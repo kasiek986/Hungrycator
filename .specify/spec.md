@@ -19,7 +19,7 @@ Aplikacja umożliwia:
 * **Baza przepisów:** Wyszukiwanie dań oraz dodawanie własnych przepisów (składniki, opis przygotowania).
 * **Lista zakupów:** Automatyczne dodawanie brakujących składników oraz możliwość ręcznego wykreślania kupionych rzeczy.
 
-## 4. Wymagania funkcjonalne (Functional Requirements)
+## 4. Wymagania funkcjonalne 
 * **FR-01 (Zarządzanie lodówką):** System umożliwia dodawanie i edycja produktów spożywczych wraz z kategorią, ilością, jednostką oraz terminem ważności ("do 3 dni", "do tygodnia").
 * **FR-02 (Propozycje posiłków i głosowanie):** System umożliwia zgłoszenie propozycji posiłku na dany dzień oraz zbieranie głosów reakcji ("tak/nie") od pozostałych członków gospodarstwa domowego.
 * **FR-03 (Baza i tworzenie przepisów):** System pozwala na przeglądanie bazy przepisów, ich filtrowanie, a także dodawanie nowych, autorskich przepisów wraz z wykazem potrzebnych składników.
