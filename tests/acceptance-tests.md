@@ -1,6 +1,6 @@
 # Plan Testów Akceptacyjnych i Weryfikacji Wymagań – Hungrycator
 
-## 1. Warunki pomiaru i kryteria zaliczenia testów (Zadanie 3)
+## 1. Warunki pomiaru i kryteria zaliczenia testów
 
 ### 1.1. Środowisko testowe i warunki początkowe
 - **Środowisko uruchomieniowe:** Klikalny prototyp aplikacji / aplikacja webowo-mobilna *Hungrycator*.
