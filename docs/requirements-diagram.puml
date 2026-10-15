@@ -1,0 +1,41 @@
+plantuml
+@startuml
+title Hungrycator - Diagram wymagań
+
+left to right direction
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam rectangle {
+    BackgroundColor white
+    BorderColor black
+}
+
+package "Hungrycator" {
+
+    rectangle "REQ-01\nWirtualna lodówka\n\nTyp: funkcjonalne\nMiernik: 100% poprawnie\nzapisanych produktów w testach" as R1
+
+    rectangle "REQ-02\nProponowanie posiłków\ni głosowanie\n\nTyp: funkcjonalne\nMiernik: 100% poprawnie\nzapisanych głosów w testach" as R2
+
+    rectangle "REQ-03\nBaza przepisów\n\nTyp: funkcjonalne\nMiernik: 100% poprawnie\ndodanych przepisów w testach" as R3
+
+    rectangle "REQ-04\nLista zakupów\n\nTyp: funkcjonalne\nMiernik: 100% poprawnie\nprzeniesionych brakujących\nskładników w testach" as R4
+
+    rectangle "REQ-05\nZarządzanie domownikami\n\nTyp: funkcjonalne\nMiernik: 100% poprawnie\nzweryfikowanych kodów\nzaproszenia w testach" as R5
+
+    rectangle "NFR-01\nWydajność\n\nTyp: niefunkcjonalne\nMiernik: lista produktów\nładuje się w maks. 2 s\nw warunkach testowych" as N1
+
+    rectangle "NFR-02\nDostępność\n\nTyp: niefunkcjonalne\nMiernik: dostępność 99%\nw okresie pomiarowym" as N2
+
+    rectangle "NFR-03\nBezpieczeństwo\n\nTyp: niefunkcjonalne\nMiernik: 100% zaliczonych\ntestów kontroli dostępu" as N3
+
+    rectangle "NFR-04\nSynchronizacja danych\n\nTyp: niefunkcjonalne\nMiernik: zmiany widoczne\nu drugiego domownika do 3 s\nw warunkach testowych" as N4
+}
+
+R1 ..> N1 : podlega
+R1 ..> N3 : podlega
+R2 ..> N4 : podlega
+R4 ..> N3 : podlega
+R5 ..> N3 : podlega
+
+@enduml
+
