@@ -1,15 +1,15 @@
-# Historie Użytkownika (User Stories) – Hungrycator
+# Historie Użytkownika – Hungrycator
 
 ### US-01: Rejestracja produktów w wirtualnej lodówce
 **Powiązane wymaganie:** FR-01  
 **Opis:** Jako domownik chcę dodawać produkty do wirtualnej lodówki wraz z terminem ważności, aby kontrolować zapasy i wiedzieć, co należy zjeść w pierwszej kolejności.  
 
 * **Kryteria akceptacji (Acceptance Criteria):**
-  * *Scenario 1: Pomyślne dodanie produktu z terminem ważności*
+  * *Scenaria 1: Pomyślne dodanie produktu z terminem ważności*
     * **Given** użytkownik znajduje się w formularzu dodawania produktu do lodówki,
     * **When** wprowadzi nazwę „Pomidory”, wybierze kategorię „Warzywa”, ilość „4 szt.” oraz przybliżony termin ważności „Do 3 dni” i kliknie „Dodaj do lodówki”,
     * **Then** produkt zostaje zapisany w wirtualnej lodówce w sekcji „Zjedz mnie najpierw”.
-  * *Scenario 2: Usunięcie lub zmiana ilości zapasów*
+  * *Scenaria 2: Usunięcie lub zmiana ilości zapasów*
     * **Given** produkt „Mleko” znajduje się w lodówce w ilości 2 szt.,
     * **When** użytkownik kliknie przycisk zmniejszenia ilości („-”),
     * **Then** ilość produktu zmniejsza się do 1 szt., a przy wartości 0 produkt jest usuwany z lodówki.
