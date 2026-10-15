@@ -1,72 +1,72 @@
-plantuml
 @startuml
-title Hungrycator - SysML Requirements Diagram
-
+skinparam wrapWidth 250
+skinparam ComponentStyle uml2
 left to right direction
-skinparam shadowing false
 
-package "Wymagania funkcjonalne" {
-
-  requirement "Zarzadzanie lodowka" as FR01 {
+package "Wymagania Funkcjonalne (ISO/IEC 25002)" {
+  
+  class "FR-01: Rejestracja produktów w lodówce" as FR01 <<requirement>> {
     id = "FR-01"
-    text = "System umozliwia dodawanie i zmiane produktow, ilosci oraz terminow waznosci."
+    text = "System umożliwia dodawanie, zmianę ilości i terminów ważności produktów."
   }
 
-  requirement "Proponowanie posilkow" as FR02 {
+  class "FR-02: Proponowanie posiłków i głosowanie" as FR02 <<requirement>> {
     id = "FR-02"
-    text = "System umozliwia proponowanie posilkow i zapisywanie glosow domownikow."
+    text = "System umożliwia zgłaszanie propozycji i głosowanie przez domowników."
   }
 
-  requirement "Baza przepisow" as FR03 {
+  class "FR-03: Zarządzanie przepisami" as FR03 <<requirement>> {
     id = "FR-03"
-    text = "System umozliwia przegladanie i dodawanie przepisow."
+    text = "System umożliwia przeglądanie i dodawanie własnych przepisów."
   }
 
-  requirement "Lista zakupow" as FR04 {
+  class "FR-04: Generowanie listy zakupów" as FR04 <<requirement>> {
     id = "FR-04"
-    text = "System umozliwia tworzenie listy zakupow z brakujacych skladnikow."
+    text = "System umożliwia automatyczne dodawanie brakujących składników."
   }
 
-  requirement "Zarzadzanie domownikami" as FR05 {
+  class "FR-05: Zarządzanie domownikami" as FR05 <<requirement>> {
     id = "FR-05"
-    text = "System umozliwia dolaczanie do gospodarstwa za pomoca kodu zaproszenia."
+    text = "System umożliwia dołączanie do gospodarstwa za pomocą kodu zaproszenia."
   }
 }
 
-package "Wymagania niefunkcjonalne" {
+package "Wymagania Niefunkcjonalne (NFR)" {
 
-  requirement "Wydajnosc" as NFR01 {
+  class "NFR-01: Wydajność" as NFR01 <<requirement>> {
     id = "NFR-01"
-    text = "95% pomiarow ladowania listy produktow trwa maksymalnie 2 s."
+    text = "95% pomiarów ładowania listy produktów trwa maksymalnie 2 s."
   }
 
-  requirement "Dostepnosc" as NFR02 {
+  class "NFR-02: Dostępność" as NFR02 <<requirement>> {
     id = "NFR-02"
-    text = "Dostepnosc systemu wynosi co najmniej 99% w miesiacu."
+    text = "Dostępność systemu (Availability) wynosi co najmniej 99% w miesiącu."
   }
 
-  requirement "Bezpieczenstwo" as NFR03 {
+  class "NFR-03: Bezpieczeństwo" as NFR03 <<requirement>> {
     id = "NFR-03"
-    text = "100% testow nieuprawnionego dostepu do danych konczy sie odmowa."
+    text = "100% prób nieuprawnionego dostępu kończy się odmową."
   }
 
-  requirement "Synchronizacja danych" as NFR04 {
+  class "NFR-04: Synchronizacja danych" as NFR04 <<requirement>> {
     id = "NFR-04"
-    text = "95% zmian jest widocznych u drugiego domownika w ciagu 3 s."
+    text = "95% zmian jest widocznych u drugiego domownika w ciągu 3 s."
   }
 
-  requirement "Odtwarzanie po awarii" as NFR05 {
+  class "NFR-05: Odtwarzanie po awarii" as NFR05 <<requirement>> {
     id = "NFR-05"
-    text = "Sredni czas od zgloszenia awarii do przywrocenia dzialania systemu (MTTR) nie przekracza 30 min, mierzony w testach odtwarzania."
+    text = "Średni czas naprawy (MTTR) nie przekracza 30 minut."
   }
 }
 
-FR01 ..> NFR01 : «refine»
-FR01 ..> NFR03 : «refine»
-FR04 ..> NFR04 : «refine»
-FR02 ..> NFR04 : «refine»
-FR04 ..> NFR03 : «refine»
-FR05 ..> NFR03 : «refine»
-FR01 ..> NFR02 : «refine»
+' Poprawne relacje śledzenia (trace) zamiast błędnego refine
+NFR01 ..> FR01 : <<trace>>
+NFR01 ..> FR04 : <<trace>>
+NFR02 ..> FR01 : <<trace>>
+NFR02 ..> FR02 : <<trace>>
+NFR03 ..> FR05 : <<trace>>
+NFR04 ..> FR01 : <<trace>>
+NFR04 ..> FR02 : <<trace>>
+NFR05 ..> FR01 : <<trace>>
 
 @enduml
