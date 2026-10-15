@@ -1,41 +1,72 @@
 plantuml
 @startuml
-title Hungrycator - Diagram wymagań
+title Hungrycator - SysML Requirements Diagram
 
 left to right direction
 skinparam shadowing false
-skinparam packageStyle rectangle
-skinparam rectangle {
-    BackgroundColor white
-    BorderColor black
+
+package "Wymagania funkcjonalne" {
+
+  requirement "Zarzadzanie lodowka" as FR01 {
+    id = "FR-01"
+    text = "System umozliwia dodawanie i zmiane produktow, ilosci oraz terminow waznosci."
+  }
+
+  requirement "Proponowanie posilkow" as FR02 {
+    id = "FR-02"
+    text = "System umozliwia proponowanie posilkow i zapisywanie glosow domownikow."
+  }
+
+  requirement "Baza przepisow" as FR03 {
+    id = "FR-03"
+    text = "System umozliwia przegladanie i dodawanie przepisow."
+  }
+
+  requirement "Lista zakupow" as FR04 {
+    id = "FR-04"
+    text = "System umozliwia tworzenie listy zakupow z brakujacych skladnikow."
+  }
+
+  requirement "Zarzadzanie domownikami" as FR05 {
+    id = "FR-05"
+    text = "System umozliwia dolaczanie do gospodarstwa za pomoca kodu zaproszenia."
+  }
 }
 
-package "Hungrycator" {
+package "Wymagania niefunkcjonalne" {
 
-    rectangle "REQ-01\nWirtualna lodówka\n\nTyp: funkcjonalne\nMiernik: 100% poprawnie\nzapisanych produktów w testach" as R1
+  requirement "Wydajnosc" as NFR01 {
+    id = "NFR-01"
+    text = "95% pomiarow ladowania listy produktow trwa maksymalnie 2 s."
+  }
 
-    rectangle "REQ-02\nProponowanie posiłków\ni głosowanie\n\nTyp: funkcjonalne\nMiernik: 100% poprawnie\nzapisanych głosów w testach" as R2
+  requirement "Dostepnosc" as NFR02 {
+    id = "NFR-02"
+    text = "Dostepnosc systemu wynosi co najmniej 99% w miesiacu."
+  }
 
-    rectangle "REQ-03\nBaza przepisów\n\nTyp: funkcjonalne\nMiernik: 100% poprawnie\ndodanych przepisów w testach" as R3
+  requirement "Bezpieczenstwo" as NFR03 {
+    id = "NFR-03"
+    text = "100% testow nieuprawnionego dostepu do danych konczy sie odmowa."
+  }
 
-    rectangle "REQ-04\nLista zakupów\n\nTyp: funkcjonalne\nMiernik: 100% poprawnie\nprzeniesionych brakujących\nskładników w testach" as R4
+  requirement "Synchronizacja danych" as NFR04 {
+    id = "NFR-04"
+    text = "95% zmian jest widocznych u drugiego domownika w ciagu 3 s."
+  }
 
-    rectangle "REQ-05\nZarządzanie domownikami\n\nTyp: funkcjonalne\nMiernik: 100% poprawnie\nzweryfikowanych kodów\nzaproszenia w testach" as R5
-
-    rectangle "NFR-01\nWydajność\n\nTyp: niefunkcjonalne\nMiernik: lista produktów\nładuje się w maks. 2 s\nw warunkach testowych" as N1
-
-    rectangle "NFR-02\nDostępność\n\nTyp: niefunkcjonalne\nMiernik: dostępność 99%\nw okresie pomiarowym" as N2
-
-    rectangle "NFR-03\nBezpieczeństwo\n\nTyp: niefunkcjonalne\nMiernik: 100% zaliczonych\ntestów kontroli dostępu" as N3
-
-    rectangle "NFR-04\nSynchronizacja danych\n\nTyp: niefunkcjonalne\nMiernik: zmiany widoczne\nu drugiego domownika do 3 s\nw warunkach testowych" as N4
+  requirement "Odtwarzanie po awarii" as NFR05 {
+    id = "NFR-05"
+    text = "Sredni czas od zgloszenia awarii do przywrocenia dzialania systemu (MTTR) nie przekracza 30 min, mierzony w testach odtwarzania."
+  }
 }
 
-R1 ..> N1 : podlega
-R1 ..> N3 : podlega
-R2 ..> N4 : podlega
-R4 ..> N3 : podlega
-R5 ..> N3 : podlega
+FR01 ..> NFR01 : «refine»
+FR01 ..> NFR03 : «refine»
+FR04 ..> NFR04 : «refine»
+FR02 ..> NFR04 : «refine»
+FR04 ..> NFR03 : «refine»
+FR05 ..> NFR03 : «refine»
+FR01 ..> NFR02 : «refine»
 
 @enduml
-
