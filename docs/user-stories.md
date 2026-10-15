@@ -59,6 +59,6 @@
 * **Historia:** Jako administrator gospodarstwa domowego chcę wygenerować kod zaproszenia, aby łatwo dodać współlokatorów do wspólnej grupy.
 * **Kryteria akceptacji:**
   * **Scenariusz 1: Dołączenie nowego domownika**
-    * **Given:** wygenerowany unikalny kod zaproszenia (np. `HUNGRY-123`),
+    * **Given:** wygenerowany unikalny kod zaproszenia (np. "HUNGRY-123"),
     * **When:** nowy użytkownik wpisze ten kod podczas konfiguracji profilu,
     * **Then:** zostanie przypisany do danego gospodarstwa domowego i zyska dostęp do wspólnej lodówki oraz listy zakupów.
