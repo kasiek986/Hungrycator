@@ -23,7 +23,7 @@
 
 ---
 
-## 2. Testy Akceptacyjne dla Wymagań Funkcjonalnych (Zadanie 4 – Given–When–Then)
+## 2. Testy Akceptacyjne dla Wymagań Funkcjonalnych (Given–When–Then)
 
 ### TC-FR-01: Rejestracja produktów w wirtualnej lodówce
 - **Weryfikowane elementy:** `FR-01` | Historia: `S-01` | Przypadek użycia: `UC-01`
@@ -105,7 +105,7 @@
 
 ---
 
-## 3. Testy Weryfikujące Wymagania Niefunkcjonalne (Zadanie 4 – Given–When–Then dla NFR)
+## 3. Testy Weryfikujące Wymagania Niefunkcjonalne (Given–When–Then dla NFR)
 
 ### TC-NFR-01: Weryfikacja wydajności ładowania listy produktów
 - **Weryfikowane wymaganie:** `NFR-01` (Wydajność) — powiązane z `FR-01`, `FR-04`
@@ -151,20 +151,20 @@
 
 ---
 
-## 4. Sprawdzenie weryfikowalności wymagań (Zadanie 5)
+## 4. Sprawdzenie weryfikowalności wymagań
 
 Poniższa tabela stanowi audyt weryfikowalności wszystkich wymagań funkcjonalnych (`FR`) i niefunkcjonalnych (`NFR`) z diagramu SysML oraz specyfikacji:
 
 | ID Wymagania | Kategoria SQuaRE (ISO/IEC 25002) | Powiązane S / UC / FR | Przypisana metryka | Kryterium zaliczenia | Identyfikator testu | Czy weryfikowalne? |
 | :--- | :--- | :--- | :--- | :--- | :--- | :---: |
 | **FR-01** | *Functional Suitability* | `S-01`, `UC-01` | Zgodność ze scenariuszem GWT | Dodanie „Pomidorów”, zmiana ilości „Mleka” (`2 -> 1 -> 0`) | `TC-FR-01` (Testy 1.1–1.3) | ✅ TAK |
-| **FR-02** | *Functional Suitability* | `S-02`, `UC-02` | Zgodność ze scenariuszem GWT | Propozycja „Makaron ze szpinakiem” / „Kebab” + głosy „Tak/Nie” | `TC-FR-02` (Testy 2.1–2.2) | ✅ TAK |
-| **FR-03** | *Functional Suitability* | `S-03`, `UC-03` | Zgodność ze scenariuszem GWT | Publikacja przepisu i widoczność w bazie dla domowników | `TC-FR-03` (Test 3.1) | ✅ TAK |
-| **FR-04** | *Functional Suitability* | `S-04`, `UC-04` | Zgodność ze scenariuszem GWT | Dodanie „Sera parmezan” do zakupów i ręczne wykreślenie | `TC-FR-04` (Testy 4.1–4.2) | ✅ TAK |
-| **FR-05** | *Functional Suitability* | `S-05`, `UC-05` | Zgodność ze scenariuszem GWT | Dołączenie kodem `HUNGRY-123` i odrzucenie błędnego kodu | `TC-FR-05` (Testy 5.1–5.2) | ✅ TAK |
-| **NFR-01** | *Performance Efficiency* | `FR-01`, `FR-04` | Czas ładowania listy (`p95`) | `p95 <= 2,0 s` (dla 95% pomiarów) | `TC-NFR-01` | ✅ TAK |
-| **NFR-02** | *Reliability (Availability)* | `FR-01`, `FR-02` | `Availability` oraz `MTBF` | `Availability >= 99%` w miesiącu (`MTBF >= 50 h`) | `TC-NFR-02` | ✅ TAK |
-| **NFR-03** | *Security* | `FR-05` | Access Rejection Rate (%) | `100%` nieuprawnionych prób zakończonych odmową | `TC-NFR-03` | ✅ TAK |
-| **NFR-04** | *Performance / Co-existence* | `FR-01`, `FR-02` | Czas synchronizacji (`p95`) | `p95 <= 3,0 s` (dla 95% zmian u drugiego domownika) | `TC-NFR-04` | ✅ TAK |
-| **NFR-05** | *Reliability (Recoverability)* | `FR-01` | `MTTR` (oraz `MTBF`) | `MTTR <= 30 minut`, brak utraty danych | `TC-NFR-05` | ✅ TAK |
-| **NFR-06** | *Usability (Operability)* | `FR-01` | Czas wykonania zadania i skuteczność | Czas `<= 15 s`, skuteczność `100%` | `TC-NFR-06` | ✅ TAK |
+| **FR-02** | *Functional Suitability* | `S-02`, `UC-02` | Zgodność ze scenariuszem GWT | Propozycja „Makaron ze szpinakiem” / „Kebab” + głosy „Tak/Nie” | `TC-FR-02` (Testy 2.1–2.2) |  TAK |
+| **FR-03** | *Functional Suitability* | `S-03`, `UC-03` | Zgodność ze scenariuszem GWT | Publikacja przepisu i widoczność w bazie dla domowników | `TC-FR-03` (Test 3.1) |  TAK |
+| **FR-04** | *Functional Suitability* | `S-04`, `UC-04` | Zgodność ze scenariuszem GWT | Dodanie „Sera parmezan” do zakupów i ręczne wykreślenie | `TC-FR-04` (Testy 4.1–4.2) |  TAK |
+| **FR-05** | *Functional Suitability* | `S-05`, `UC-05` | Zgodność ze scenariuszem GWT | Dołączenie kodem `HUNGRY-123` i odrzucenie błędnego kodu | `TC-FR-05` (Testy 5.1–5.2) |  TAK |
+| **NFR-01** | *Performance Efficiency* | `FR-01`, `FR-04` | Czas ładowania listy (`p95`) | `p95 <= 2,0 s` (dla 95% pomiarów) | `TC-NFR-01` |  TAK |
+| **NFR-02** | *Reliability (Availability)* | `FR-01`, `FR-02` | `Availability` oraz `MTBF` | `Availability >= 99%` w miesiącu (`MTBF >= 50 h`) | `TC-NFR-02` |  TAK |
+| **NFR-03** | *Security* | `FR-05` | Access Rejection Rate (%) | `100%` nieuprawnionych prób zakończonych odmową | `TC-NFR-03` |  TAK |
+| **NFR-04** | *Performance / Co-existence* | `FR-01`, `FR-02` | Czas synchronizacji (`p95`) | `p95 <= 3,0 s` (dla 95% zmian u drugiego domownika) | `TC-NFR-04` |  TAK |
+| **NFR-05** | *Reliability (Recoverability)* | `FR-01` | `MTTR` (oraz `MTBF`) | `MTTR <= 30 minut`, brak utraty danych | `TC-NFR-05` |  TAK |
+| **NFR-06** | *Usability (Operability)* | `FR-01` | Czas wykonania zadania i skuteczność | Czas `<= 15 s`, skuteczność `100%` | `TC-NFR-06` |  TAK |
