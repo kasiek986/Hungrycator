@@ -13,7 +13,7 @@
   - Baza przepisów zawiera przepis „Makaron ze szpinakiem” (wymagający składnika „Ser parmezan”, którego aktualnie brakuje w lodówce).
   - Aktywny kod zaproszenia wygenerowany przez Administratora: `HUNGRY-123`.
 - **Warunki techniczne dla pomiarów NFR:**
-  - Baza danych obciążona do 100 produktami w lodówce i 15 przepisami.
+  - Baza danych obciążona do 100 produktami w lodówce i 50 przepisami.
   - Stabilne połączenie internetowe (opóźnienie sieciowe `<= 50 ms`).
   - Do testów synchronizacji (`NFR-04`): dwie równolegle otwarte sesje różnych domowników należących do tego samego gospodarstwa.
 
