@@ -3,7 +3,7 @@
 ## 1. Warunki pomiaru i kryteria zaliczenia testów
 
 ### 1.1. Środowisko testowe i warunki początkowe
-- **Środowisko uruchomieniowe:** Klikalny prototyp aplikacji / aplikacja webowo-mobilna *Hungrycator*.
+- **Środowisko uruchomieniowe:** Klikalny prototyp aplikacji webowo-mobilnej. *Hungrycator*.
 - **Aktorzy testowi (zgodnie z `UC-01`–`UC-05`):**
   - **Domownik** – zalogowany członek gospodarstwa domowego posiadający dostęp do wspólnej lodówki, przepisów, głosowania i listy zakupów.
   - **Administrator gospodarstwa domowego** – domownik posiadający uprawnienia do generowania kodów zaproszenia (np. `HUNGRY-123`).
@@ -13,7 +13,7 @@
   - Baza przepisów zawiera przepis „Makaron ze szpinakiem” (wymagający składnika „Ser parmezan”, którego aktualnie brakuje w lodówce).
   - Aktywny kod zaproszenia wygenerowany przez Administratora: `HUNGRY-123`.
 - **Warunki techniczne dla pomiarów NFR:**
-  - Baza danych obciążona do 100 produktami w lodówce i 50 przepisami.
+  - Baza danych obciążona do 100 produktami w lodówce i 15 przepisami.
   - Stabilne połączenie internetowe (opóźnienie sieciowe `<= 50 ms`).
   - Do testów synchronizacji (`NFR-04`): dwie równolegle otwarte sesje różnych domowników należących do tego samego gospodarstwa.
 
