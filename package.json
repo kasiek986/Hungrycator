@@ -1,0 +1,24 @@
+{
+  "name": "hungrycator",
+  "version": "1.0.0",
+  "description": "Aplikacja do zarządzania wspólną wirtualną lodówką, produktami i listą zakupów.",
+  "scripts": {
+    "format": "prettier --write \"frontend/src/**/*.{ts,tsx,css}\" \"backend/src/**/*.ts\" \"*.json\" \"*.md\"",
+    "format:check": "prettier --check \"frontend/src/**/*.{ts,tsx,css}\" \"backend/src/**/*.ts\" \"*.json\" \"*.md\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kasiek986/Hungrycator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kasiek986/Hungrycator/issues"
+  },
+  "homepage": "https://github.com/kasiek986/Hungrycator#readme",
+  "private": true,
+  "devDependencies": {
+    "prettier": "^3.9.10"
+  }
+}
