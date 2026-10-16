@@ -157,7 +157,7 @@ Poniższa tabela stanowi audyt weryfikowalności wszystkich wymagań funkcjonaln
 
 | ID Wymagania | Kategoria SQuaRE (ISO/IEC 25002) | Powiązane S / UC / FR | Przypisana metryka | Kryterium zaliczenia | Identyfikator testu | Czy weryfikowalne? |
 | :--- | :--- | :--- | :--- | :--- | :--- | :---: |
-| **FR-01** | *Functional Suitability* | `S-01`, `UC-01` | Zgodność ze scenariuszem GWT | Dodanie „Pomidorów”, zmiana ilości „Mleka” (`2 -> 1 -> 0`) | `TC-FR-01` (Testy 1.1–1.3) | ✅ TAK |
+| **FR-01** | *Functional Suitability* | `S-01`, `UC-01` | Zgodność ze scenariuszem GWT | Dodanie „Pomidorów”, zmiana ilości „Mleka” (`2 -> 1 -> 0`) | `TC-FR-01` (Testy 1.1–1.3) |  TAK |
 | **FR-02** | *Functional Suitability* | `S-02`, `UC-02` | Zgodność ze scenariuszem GWT | Propozycja „Makaron ze szpinakiem” / „Kebab” + głosy „Tak/Nie” | `TC-FR-02` (Testy 2.1–2.2) |  TAK |
 | **FR-03** | *Functional Suitability* | `S-03`, `UC-03` | Zgodność ze scenariuszem GWT | Publikacja przepisu i widoczność w bazie dla domowników | `TC-FR-03` (Test 3.1) |  TAK |
 | **FR-04** | *Functional Suitability* | `S-04`, `UC-04` | Zgodność ze scenariuszem GWT | Dodanie „Sera parmezan” do zakupów i ręczne wykreślenie | `TC-FR-04` (Testy 4.1–4.2) |  TAK |
