@@ -1,14 +1,15 @@
-import express from "express";
+import { createApp } from "./app.js";
+import { seedFridge, seedHousehold, seedRecipes } from "./data/seed.js";
+import { MealPlanStore } from "./store/mealPlanStore.js";
 
-const app = express();
 const PORT = 3000;
 
-app.use(express.json());
-
-app.get("/api/health", (_req, res) => {
-  res.json({ status: "ok", message: "Hungrycator API działa!" });
+const store = new MealPlanStore({
+  household: seedHousehold,
+  recipes: seedRecipes,
+  fridge: seedFridge,
 });
 
-app.listen(PORT, () => {
+createApp(store).listen(PORT, () => {
   console.log(`Serwer działa na http://localhost:${PORT}`);
 });
