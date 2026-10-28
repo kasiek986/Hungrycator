@@ -69,6 +69,41 @@ Serwer udostępnia testowy endpoint sprawdzający jego dostępność:
 
 [http://localhost:3000/api/health](http://localhost:3000/api/health)
 
+Serwer deweloperski Vite przekazuje zapytania `/api` do backendu, więc oba procesy muszą działać jednocześnie. Dane są na razie przechowywane w pamięci serwera i resetują się przy jego restarcie.
+
+## Zrealizowane historie użytkownika
+
+### S-02: Proponowanie posiłku i głosowanie (FR-02)
+
+Zakładka **Posiłki** → ekran „Co dziś jemy?”:
+
+- wybór posiłku (śniadanie, obiad, kolacja) na dziś,
+- pole propozycji: po kliknięciu pokazuje przepisy z bazy (z liczbą składników dostępnych w lodówce), a wpisanie nazwy spoza bazy (np. „Kebab”) i zatwierdzenie dodaje własną propozycję,
+- karta propozycji z potrzebnymi składnikami (dla przepisów z bazy) i głosowaniem „Tak” / „Może” / „Nie”,
+- głosowanie kończy się, gdy zagłosują wszyscy domownicy; danie przechodzi, jeśli głosów „Tak” jest więcej niż „Nie”,
+- widok odświeża się co 2 s, więc głosy i propozycje innych domowników pojawiają się w ciągu 3 s (NFR-04).
+
+Do czasu wdrożenia logowania (FR-05) domownika wybiera się paskiem „Jesteś:” u góry ekranu. Wybór trafia do adresu, np. `http://localhost:5173/?jako=marek`, więc w dwóch kartach przeglądarki można sprawdzić, co widzą różni domownicy.
+
+API (wymaga nagłówka `X-User-Id` z identyfikatorem domownika: `ania`, `marek` lub `ola`):
+
+| Metoda | Ścieżka                                       | Opis                                                                           |
+| :----- | :-------------------------------------------- | :----------------------------------------------------------------------------- |
+| GET    | `/api/household`                              | Gospodarstwo i domownicy                                                       |
+| GET    | `/api/recipes`                                | Przepisy z informacją o składnikach w lodówce                                  |
+| GET    | `/api/proposals?date=RRRR-MM-DD&mealType=...` | Propozycje na dany posiłek (`breakfast`/`lunch`/`dinner`)                      |
+| POST   | `/api/proposals`                              | Nowa propozycja: `{ date, mealType, recipeId }` lub `{ date, mealType, name }` |
+| PUT    | `/api/proposals/:id/vote`                     | Głos: `{ value: "yes" \| "maybe" \| "no" }`                                    |
+| DELETE | `/api/proposals/:id`                          | Wycofanie propozycji przez jej autora                                          |
+
+## Testy
+
+Testy API odpowiadające scenariuszom `TC-FR-02` z `tests/acceptance-tests.md`:
+
+```bash
+npm --prefix backend test
+```
+
 ## Kontrola jakości kodu
 
 Sprawdzanie kodu frontendowego za pomocą ESLint:
