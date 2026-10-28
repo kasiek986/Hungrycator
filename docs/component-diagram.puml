@@ -1,1 +1,28 @@
+@startuml component-diagram
+!theme plain
+title Diagram Komponentów — Hungrycator Architecture
 
+package "Frontend (React + Vite)" {
+    [Interfejs Użytkownika (UI)] as UI
+    [Klient API] as APIClient
+    UI --> APIClient : Wywołanie akcji
+}
+
+package "Backend (Node.js + Express)" {
+    [Kontrolery REST API] as Controllers
+    [Logika Biznesowa] as Services
+    [Autoryzacja / Kod Zaproszenia] as Auth
+    
+    Controllers --> Services
+    Auth --> Controllers
+}
+
+database "Warstwa Danych" {
+    [Baza Danych / Storage] as DB
+}
+
+' Połączenia między warstwami
+APIClient ..> Auth : Żądania HTTP / REST (JSON)
+Services --> DB : Zapis i odczyt danych
+
+@enduml
