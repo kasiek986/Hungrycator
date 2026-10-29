@@ -1,0 +1,39 @@
+@startuml
+title Hungrycator us1
+actor Domownik as Domownik
+boundary VotePanel as VotePanel
+boundary MealsScreen as MealsScreen
+control api as api
+control BackendAPI as BackendAPI
+control "store: MealPlanStore" as MealPlanStore
+Domownik -> VotePanel : 1 wybor glosu
+activate VotePanel
+VotePanel --> MealsScreen : 1.1 onVote(value: TAK | MOZE | NIE)
+deactivate VotePanel
+activate MealsScreen
+MealsScreen -> api : 1.2 vote(memberId, proposalId, value)
+activate api
+api -> BackendAPI : 1.3 PUT /api/proposals/:id/vote
+activate BackendAPI
+BackendAPI -> MealPlanStore : 1.4 castVote(memberId, proposalId, value)
+activate MealPlanStore
+MealPlanStore --> BackendAPI : 1.5 zapisano i zaktualizowano propozycje
+deactivate MealPlanStore
+deactivate BackendAPI
+deactivate api
+deactivate MealsScreen
+alt [200 OK]
+  BackendAPI --> api : 1.6 200 OK JSON
+  api --> MealsScreen : 1.7 zwrocenie Proposal
+  MealsScreen -> MealsScreen : 1.8 upsert(proposal)
+  MealsScreen --> Domownik : 1.9 aktualny glos i wynik
+else [401 Unauthorized]
+  BackendAPI --> api : 401 Unauthorized
+  api --> MealsScreen : blad autoryzacji
+else [400 Bad Request]
+  BackendAPI --> api : 400 Bad Request
+  api --> MealsScreen : niepoprawne dane glosu
+else [błąd sieciowy]
+  api --> MealsScreen : obsluga bledu sieciowego
+end
+@enduml

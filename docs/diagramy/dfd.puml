@@ -1,0 +1,50 @@
+
+@startuml
+title DFD 
+left to right direction
+
+actor Domownik
+
+rectangle "1.0\nProfil i gospodarstwo" as P1
+rectangle "2.0\nZarzadzanie lodowka" as P2
+rectangle "3.0\nZarzadzanie zakupami" as P3
+rectangle "4.0\nPlanowanie posilkow" as P4
+rectangle "5.0\nStrona glowna" as P5
+
+database "D1\nUzytkownicy i gospodarstwa" as D1
+database "D2\nProdukty w lodowce" as D2
+database "D3\nLista zakupow" as D3
+database "D4\nPrzepisy, propozycje\ni glosy" as D4
+
+Domownik --> P1 : dane profilu,\ndane gospodarstwa
+P1 --> D1 : zapis i odczyt\nuzytkownikow
+D1 --> P1 : dane kont\ni gospodarstwa
+P1 --> Domownik : informacje o profilu
+
+Domownik --> P2 : dodawanie,\nedytowanie i usuwanie produktow
+P2 --> D2 : zapis i aktualizacja\nproduktow
+D2 --> P2 : produkty, ilosci,\ndaty waznosci
+P2 --> Domownik : aktualny stan lodowki
+
+Domownik --> P3 : dodawanie i odhaczanie\nproduktow na liscie
+P3 --> D3 : zapis i aktualizacja\nlisty zakupow
+D3 --> P3 : pozycje listy zakupow
+P3 --> Domownik : aktualna lista zakupow
+
+Domownik --> P4 : wybor posilku,\npropozycja i glos
+P4 --> D2 : pobranie dostepnych skladnikow
+D2 --> P4 : dane o produktach
+P4 --> D4 : odczyt przepisow,\nzapis propozycji i glosow
+D4 --> P4 : przepisy i wyniki glosowania
+P4 --> D3 : dodanie brakujacych skladnikow
+P4 --> Domownik : propozycje posilkow\ni wynik glosowania
+
+P5 --> D2 : pobranie produktow
+D2 --> P5 : stan lodowki i daty waznosci
+P5 --> D3 : pobranie listy zakupow
+D3 --> P5 : pozycje zakupowe
+P5 --> D4 : pobranie danych o posilkach
+D4 --> P5 : propozycje posilkow
+P5 --> Domownik : podsumowanie i przypomnienia
+
+@enduml
