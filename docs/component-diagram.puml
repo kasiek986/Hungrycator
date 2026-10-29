@@ -1,28 +1,39 @@
-@startuml component-diagram
-!theme plain
-title Diagram Komponentów — Hungrycator Architecture
 
-package "Frontend (React + Vite)" {
-    [Interfejs Użytkownika (UI)] as UI
-    [Klient API] as APIClient
-    UI --> APIClient : Wywołanie akcji
+@startuml
+title Diagram komponentów UML - Hungrycator
+
+skinparam componentStyle uml2
+skinparam packageStyle rectangle
+skinparam linetype ortho
+
+package "Frontend (React + TypeScript + Vite)" {
+    component "Interfejs Użytkownika" as UI
+    component "Klient API" as APIClient
+
+    UI --> APIClient : Wywołania
 }
 
-package "Backend (Node.js + Express)" {
-    [Kontrolery REST API] as Controllers
-    [Logika Biznesowa] as Services
-    [Autoryzacja / Kod Zaproszenia] as Auth
-    
-    Controllers --> Services
-    Auth --> Controllers
+package "Backend (Node.js + Express + TypeScript)" {
+    component "REST API\n(Endpointy HTTP)" as API
+    component "Dane Początkowe\n(data/seed.ts)" as Seed
+    component "Walidacja i identyfikacja\ndomownika (X-User-Id)" as Auth
+    component "Logika Biznesowa\n(store/mealPlanStore.ts)" as BusinessLogic
+
+    API --> Auth : Weryfikacja
+    API --> BusinessLogic : Operacje na danych
+    Seed --> BusinessLogic : Inicjalizacja danych
 }
 
-database "Warstwa Danych" {
-    [Baza Danych / Storage] as DB
+package "Warstwa Danych" {
+    component "Pamięć procesu serwera\n(dane tymczasowe)" as DataStore
 }
 
-' Połączenia między warstwami
-APIClient ..> Auth : Żądania HTTP / REST (JSON)
-Services --> DB : Zapis i odczyt danych
+APIClient ..> API : HTTP / REST (JSON)
+BusinessLogic --> DataStore : Odczyt i zapis
+
+note bottom of DataStore
+  Brak trwałej bazy danych
+  w obecnej wersji prototypu.
+end note
 
 @enduml
