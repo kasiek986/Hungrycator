@@ -24,7 +24,6 @@ Zdecydowano się na architekturę **Client-Server**, w której aplikacja został
 Obie części komunikują się ze sobą za pomocą interfejsu REST API.
 
 ### Rozważane alternatywy
-- Aplikacja monolityczna, w której interfejs i logika biznesowa byłyby połączone w jednym systemie.
 - Architektura Client-Server z oddzielnym frontendem i backendem.
 
 ### Konsekwencje
