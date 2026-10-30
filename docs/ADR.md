@@ -49,7 +49,6 @@ Wybrano następujące technologie:
 - **Vite** – narzędzie odpowiedzialne za uruchamianie środowiska deweloperskiego oraz budowanie aplikacji.
 
 ### Rozważane alternatywy
-- Vue.js jako alternatywa dla React.
 - Angular jako rozbudowany framework frontendowy.
 - JavaScript bez TypeScript.
 
@@ -78,8 +77,6 @@ Wybrano następujące technologie:
 
 ### Rozważane alternatywy
 - Python z frameworkiem FastAPI.
-- Java z frameworkiem Spring Boot.
-- Node.js z frameworkiem Express.
 
 ### Konsekwencje
 - Możliwość sprawnej obsługi żądań HTTP.
@@ -106,15 +103,7 @@ W komunikacji wykorzystywane są metody HTTP:
 - **PUT** – aktualizowanie istniejących danych.
 - **DELETE** – usuwanie danych.
 
-Przykładowe endpointy:
-
-- `/api/household` – pobieranie informacji o gospodarstwie domowym.
-- `/api/recipes` – pobieranie przepisów.
-- `/api/proposals` – pobieranie i dodawanie propozycji posiłków.
-- `/api/proposals/:id/vote` – przesyłanie głosu na wybrany posiłek.
-
 ### Rozważane alternatywy
-- GraphQL – alternatywny sposób udostępniania danych przez API.
 - WebSocket – komunikacja umożliwiająca przesyłanie danych w czasie rzeczywistym.
 - REST API z wykorzystaniem formatu JSON.
 
@@ -139,8 +128,6 @@ Zdecydowano się na tymczasowe przechowywanie danych w pamięci serwera backendo
 Dane początkowe są przygotowywane na podstawie danych testowych (seed), a następnie obsługiwane przez mechanizm przechowywania danych w aplikacji backendowej.
 
 ### Rozważane alternatywy
-- Relacyjna baza danych, np. PostgreSQL lub MySQL.
-- Nierelacyjna baza danych, np. MongoDB.
 - Przechowywanie danych w pamięci serwera.
 
 ### Konsekwencje
@@ -167,8 +154,6 @@ W przypadku modułu głosowania widok jest odświeżany co 2 sekundy, dzięki cz
 
 ### Rozważane alternatywy
 - Ręczne odświeżanie strony przez użytkownika.
-- WebSocket – utrzymywanie stałego połączenia pomiędzy klientem i serwerem.
-- Polling – okresowe pobieranie aktualnych danych z serwera.
 
 ### Konsekwencje
 - Użytkownicy widzą aktualne propozycje i głosy bez ręcznego odświeżania strony.
