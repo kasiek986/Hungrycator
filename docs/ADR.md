@@ -133,74 +133,12 @@ W komunikacji wykorzystywane są metody HTTP:
 
 ---
 
-## ADR 5: Przechowywanie danych w pamięci serwera
-
-- **Status:** Accepted (Przyjęte)
-
-### Kontekst
-
-Aplikacja Hungrycator wymaga przechowywania informacji o gospodarstwie domowym, produktach w lodówce, przepisach oraz propozycjach posiłków. Na obecnym etapie rozwoju projektu konieczne było zastosowanie prostego rozwiązania umożliwiającego przechowywanie i obsługę danych bez wdrażania zewnętrznej bazy danych.
-
-### Decyzja
-
-Zdecydowano się na tymczasowe przechowywanie danych w pamięci serwera backendowego.
-
-Dane są przechowywane tymczasowo w pamięci serwera backendowego. Po ponownym uruchomieniu serwera wracają do stanu początkowego.
-
-### Rozważane alternatywy
-
-- Relacyjna baza danych, np. PostgreSQL.
-- Nierelacyjna baza danych, np. MongoDB.
-- Tymczasowe przechowywanie danych w pamięci serwera.
-
-### Konsekwencje
-
-- Prostsza konfiguracja i uruchamianie aplikacji.
-- Brak konieczności instalowania i konfigurowania zewnętrznej bazy danych.
-- Szybsze przygotowanie prototypu aplikacji.
-- Dane nie są trwale zapisywane.
-- Po ponownym uruchomieniu serwera dane wracają do stanu początkowego.
-- W przyszłości konieczne będzie wdrożenie trwałego mechanizmu przechowywania danych.
-
----
-
-## ADR 6: Odświeżanie danych w interfejsie użytkownika (Polling)
-
-- **Status:** Accepted (Przyjęte)
-
-### Kontekst
-
-W aplikacji Hungrycator kilku domowników może jednocześnie uczestniczyć w głosowaniu na posiłki. Istotne jest, aby propozycje oraz oddane głosy były widoczne również dla pozostałych użytkowników bez konieczności ręcznego odświeżania strony.
-
-### Decyzja
-
-Zdecydowano się na zastosowanie mechanizmu **Polling**, czyli cyklicznego wysyłania zapytań z frontendu do backendu w celu pobierania aktualnych danych.
-
-W przypadku modułu głosowania widok jest odświeżany co 2 sekundy, dzięki czemu zmiany wprowadzone przez innych domowników są szybko widoczne.
-
-### Rozważane alternatywy
-
-- Ręczne odświeżanie strony przez użytkownika.
-- WebSocket – utrzymywanie stałego połączenia pomiędzy klientem i serwerem.
-- Polling – okresowe pobieranie aktualnych danych z serwera.
-
-### Konsekwencje
-
-- Widok głosowania odświeża się co 2 sekundy.
-- Głosy i propozycje innych domowników pojawiają się w ciągu około 3 sekund.
-- Rozwiązanie jest stosunkowo proste do wdrożenia.
-- Nie wymaga utrzymywania stałego połączenia WebSocket.
-- Regularne zapytania zwiększają liczbę żądań kierowanych do serwera.
-- Aktualizacje nie są natychmiastowe, ponieważ zależą od ustalonego interwału odświeżania.
-
----
-
 ## Podsumowanie
 
-Podjęte decyzje architektoniczne pozwoliły na stworzenie aplikacji Hungrycator w oparciu o architekturę Client-Server, z wykorzystaniem nowoczesnych technologii frontendowych i backendowych.
+Podjęte decyzje architektoniczne pozwoliły na zaprojektowanie aplikacji Hungrycator w oparciu o architekturę Client-Server, która rozdziela frontend odpowiedzialny za interfejs użytkownika od backendu realizującego logikę biznesową.
 
-Zastosowanie React, TypeScript, Vite, Node.js oraz Express umożliwiło rozdzielenie odpowiedzialności pomiędzy poszczególne części systemu. REST API i format JSON zapewniają komunikację pomiędzy frontendem a backendem.
+Wykorzystanie technologii React, TypeScript i Vite umożliwiło stworzenie interaktywnego interfejsu użytkownika, natomiast Node.js i Express zapewniają obsługę logiki serwerowej oraz żądań przesyłanych przez aplikację.
 
-Dodatkowo zastosowanie przechowywania danych w pamięci serwera oraz mechanizmu Polling pozwoliło na realizację podstawowych funkcjonalności aplikacji, w tym wspólnego głosowania na posiłki.
+Do komunikacji pomiędzy frontendem i backendem wykorzystano REST API oraz format JSON, co zapewnia prosty i uporządkowany sposób wymiany danych.
 
-Przyjęte rozwiązania stanowią podstawę do dalszego rozwoju systemu, w szczególności wdrożenia trwałej bazy danych oraz pełnego systemu uwierzytelniania użytkowników.
+Zastosowane rozwiązania tworzą spójną podstawę architektoniczną aplikacji Hungrycator oraz umożliwiają jej dalszy rozwój, rozbudowę funkcjonalności i łatwiejsze utrzymanie kodu.
