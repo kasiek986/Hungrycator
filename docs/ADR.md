@@ -24,6 +24,7 @@ Zdecydowano się na architekturę **Client-Server**, w której aplikacja został
 Obie części komunikują się ze sobą za pomocą interfejsu REST API.
 
 ### Rozważane alternatywy
+- Architektura monolityczna, w której frontend i backend stanowią jedną część systemu.
 - Architektura Client-Server z oddzielnym frontendem i backendem.
 
 ### Konsekwencje
@@ -104,8 +105,8 @@ W komunikacji wykorzystywane są metody HTTP:
 - **DELETE** – usuwanie danych.
 
 ### Rozważane alternatywy
-- WebSocket – komunikacja umożliwiająca przesyłanie danych w czasie rzeczywistym.
-- REST API z wykorzystaniem formatu JSON.
+- GraphQL – alternatywny sposób komunikacji pomiędzy frontendem i backendem.
+- WebSocket – mechanizm umożliwiający komunikację w czasie rzeczywistym.
 
 ### Konsekwencje
 - Prosty i czytelny sposób komunikacji pomiędzy frontendem i backendem.
@@ -128,7 +129,9 @@ Zdecydowano się na tymczasowe przechowywanie danych w pamięci serwera backendo
 Dane początkowe są przygotowywane na podstawie danych testowych (seed), a następnie obsługiwane przez mechanizm przechowywania danych w aplikacji backendowej.
 
 ### Rozważane alternatywy
-- Przechowywanie danych w pamięci serwera.
+- Relacyjna baza danych, np. PostgreSQL.
+- Nierelacyjna baza danych, np. MongoDB.
+- Tymczasowe przechowywanie danych w pamięci serwera.
 
 ### Konsekwencje
 - Prostsza konfiguracja i uruchamianie aplikacji.
@@ -154,6 +157,8 @@ W przypadku modułu głosowania widok jest odświeżany co 2 sekundy, dzięki cz
 
 ### Rozważane alternatywy
 - Ręczne odświeżanie strony przez użytkownika.
+- WebSocket – utrzymywanie stałego połączenia pomiędzy klientem i serwerem.
+- Polling – okresowe pobieranie aktualnych danych z serwera.
 
 ### Konsekwencje
 - Użytkownicy widzą aktualne propozycje i głosy bez ręcznego odświeżania strony.
