@@ -13,9 +13,11 @@ Aplikacja Hungrycator służy do zarządzania wspólną wirtualną lodówką, pr
 - **Status:** Accepted (Przyjęte)
 
 ### Kontekst
+
 Aplikacja Hungrycator jest przeznaczona dla wielu domowników, którzy powinni mieć możliwość korzystania ze wspólnych danych, takich jak zawartość lodówki, produkty oraz propozycje posiłków. Konieczne było zastosowanie rozwiązania umożliwiającego oddzielenie interfejsu użytkownika od logiki odpowiedzialnej za przetwarzanie danych.
 
 ### Decyzja
+
 Zdecydowano się na architekturę **Client-Server**, w której aplikacja została podzielona na dwie główne części:
 
 - **Frontend** – odpowiada za interfejs użytkownika, prezentowanie danych oraz obsługę interakcji użytkownika.
@@ -24,10 +26,12 @@ Zdecydowano się na architekturę **Client-Server**, w której aplikacja został
 Obie części komunikują się ze sobą za pomocą interfejsu REST API.
 
 ### Rozważane alternatywy
+
 - Architektura monolityczna, w której frontend i backend stanowią jedną część systemu.
 - Architektura Client-Server z oddzielnym frontendem i backendem.
 
 ### Konsekwencje
+
 - Możliwość niezależnego rozwijania frontendu i backendu.
 - Łatwiejsze utrzymanie oraz testowanie poszczególnych części aplikacji.
 - Możliwość rozbudowy backendu bez konieczności przebudowy całego interfejsu.
@@ -40,9 +44,11 @@ Obie części komunikują się ze sobą za pomocą interfejsu REST API.
 - **Status:** Accepted (Przyjęte)
 
 ### Kontekst
+
 Aplikacja Hungrycator wymaga interaktywnego i przejrzystego interfejsu użytkownika. Użytkownicy powinni mieć możliwość przeglądania zawartości lodówki, zarządzania produktami oraz uczestniczenia w głosowaniu na posiłki. Istotna jest również możliwość dynamicznego aktualizowania wyświetlanych informacji.
 
 ### Decyzja
+
 Wybrano następujące technologie:
 
 - **React** – biblioteka służąca do tworzenia interfejsów użytkownika opartych na komponentach.
@@ -50,10 +56,12 @@ Wybrano następujące technologie:
 - **Vite** – narzędzie odpowiedzialne za uruchamianie środowiska deweloperskiego oraz budowanie aplikacji.
 
 ### Rozważane alternatywy
+
 - Angular jako rozbudowany framework frontendowy.
 - JavaScript bez TypeScript.
 
 ### Konsekwencje
+
 - Możliwość tworzenia interfejsu z wykorzystaniem wielokrotnie używanych komponentów.
 - Łatwiejsze zarządzanie dynamicznie zmieniającymi się danymi.
 - System typów TypeScript pomaga ograniczyć liczbę błędów.
@@ -67,9 +75,11 @@ Wybrano następujące technologie:
 - **Status:** Accepted (Przyjęte)
 
 ### Kontekst
+
 Backend aplikacji Hungrycator odpowiada za obsługę żądań przesyłanych przez frontend oraz realizację logiki biznesowej. Musi umożliwiać zarządzanie danymi domowników, produktami, przepisami oraz propozycjami posiłków i głosowaniem.
 
 ### Decyzja
+
 Wybrano następujące technologie:
 
 - **Node.js** – środowisko uruchomieniowe JavaScript po stronie serwera.
@@ -77,9 +87,12 @@ Wybrano następujące technologie:
 - **TypeScript** – zapewnia typowanie danych i ułatwia organizację kodu backendowego.
 
 ### Rozważane alternatywy
+
 - Python z frameworkiem FastAPI.
+- Java z frameworkiem Spring Boot.
 
 ### Konsekwencje
+
 - Możliwość sprawnej obsługi żądań HTTP.
 - Wykorzystanie TypeScript zarówno po stronie frontendu, jak i backendu.
 - Łatwiejsze tworzenie i rozwijanie endpointów API.
@@ -92,9 +105,11 @@ Wybrano następujące technologie:
 - **Status:** Accepted (Przyjęte)
 
 ### Kontekst
+
 Frontend i backend aplikacji Hungrycator są oddzielnymi częściami systemu, dlatego konieczne było określenie sposobu wymiany danych pomiędzy nimi. Komunikacja musi umożliwiać pobieranie informacji o domownikach, przepisach, produktach oraz przesyłanie propozycji posiłków i głosów.
 
 ### Decyzja
+
 Zdecydowano się na wykorzystanie architektury **REST API** oraz formatu **JSON** do wymiany danych.
 
 W komunikacji wykorzystywane są metody HTTP:
@@ -105,10 +120,12 @@ W komunikacji wykorzystywane są metody HTTP:
 - **DELETE** – usuwanie danych.
 
 ### Rozważane alternatywy
+
 - GraphQL – alternatywny sposób komunikacji pomiędzy frontendem i backendem.
 - WebSocket – mechanizm umożliwiający komunikację w czasie rzeczywistym.
 
 ### Konsekwencje
+
 - Prosty i czytelny sposób komunikacji pomiędzy frontendem i backendem.
 - Możliwość łatwego testowania endpointów API.
 - JSON umożliwia wygodne przesyłanie danych pomiędzy różnymi częściami aplikacji.
@@ -121,19 +138,23 @@ W komunikacji wykorzystywane są metody HTTP:
 - **Status:** Accepted (Przyjęte)
 
 ### Kontekst
+
 Aplikacja Hungrycator wymaga przechowywania informacji o gospodarstwie domowym, produktach w lodówce, przepisach oraz propozycjach posiłków. Na obecnym etapie rozwoju projektu konieczne było zastosowanie prostego rozwiązania umożliwiającego przechowywanie i obsługę danych bez wdrażania zewnętrznej bazy danych.
 
 ### Decyzja
+
 Zdecydowano się na tymczasowe przechowywanie danych w pamięci serwera backendowego.
 
-Dane początkowe są przygotowywane na podstawie danych testowych (seed), a następnie obsługiwane przez mechanizm przechowywania danych w aplikacji backendowej.
+Dane są przechowywane tymczasowo w pamięci serwera backendowego. Po ponownym uruchomieniu serwera wracają do stanu początkowego.
 
 ### Rozważane alternatywy
+
 - Relacyjna baza danych, np. PostgreSQL.
 - Nierelacyjna baza danych, np. MongoDB.
 - Tymczasowe przechowywanie danych w pamięci serwera.
 
 ### Konsekwencje
+
 - Prostsza konfiguracja i uruchamianie aplikacji.
 - Brak konieczności instalowania i konfigurowania zewnętrznej bazy danych.
 - Szybsze przygotowanie prototypu aplikacji.
@@ -141,27 +162,32 @@ Dane początkowe są przygotowywane na podstawie danych testowych (seed), a nast
 - Po ponownym uruchomieniu serwera dane wracają do stanu początkowego.
 - W przyszłości konieczne będzie wdrożenie trwałego mechanizmu przechowywania danych.
 
- ---
+---
 
 ## ADR 6: Odświeżanie danych w interfejsie użytkownika (Polling)
 
 - **Status:** Accepted (Przyjęte)
 
 ### Kontekst
+
 W aplikacji Hungrycator kilku domowników może jednocześnie uczestniczyć w głosowaniu na posiłki. Istotne jest, aby propozycje oraz oddane głosy były widoczne również dla pozostałych użytkowników bez konieczności ręcznego odświeżania strony.
 
 ### Decyzja
+
 Zdecydowano się na zastosowanie mechanizmu **Polling**, czyli cyklicznego wysyłania zapytań z frontendu do backendu w celu pobierania aktualnych danych.
 
 W przypadku modułu głosowania widok jest odświeżany co 2 sekundy, dzięki czemu zmiany wprowadzone przez innych domowników są szybko widoczne.
 
 ### Rozważane alternatywy
+
 - Ręczne odświeżanie strony przez użytkownika.
 - WebSocket – utrzymywanie stałego połączenia pomiędzy klientem i serwerem.
 - Polling – okresowe pobieranie aktualnych danych z serwera.
 
 ### Konsekwencje
-- Użytkownicy widzą aktualne propozycje i głosy bez ręcznego odświeżania strony.
+
+- Widok głosowania odświeża się co 2 sekundy.
+- Głosy i propozycje innych domowników pojawiają się w ciągu około 3 sekund.
 - Rozwiązanie jest stosunkowo proste do wdrożenia.
 - Nie wymaga utrzymywania stałego połączenia WebSocket.
 - Regularne zapytania zwiększają liczbę żądań kierowanych do serwera.
