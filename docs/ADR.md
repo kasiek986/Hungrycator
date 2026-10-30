@@ -27,8 +27,7 @@ Obie części komunikują się ze sobą za pomocą interfejsu REST API.
 
 ### Rozważane alternatywy
 
-- Architektura monolityczna, w której frontend i backend stanowią jedną część systemu.
-- Architektura Client-Server z oddzielnym frontendem i backendem.
+- Brak
 
 ### Konsekwencje
 
@@ -57,8 +56,7 @@ Wybrano następujące technologie:
 
 ### Rozważane alternatywy
 
-- Angular jako rozbudowany framework frontendowy.
-- JavaScript bez TypeScript.
+- Brak
 
 ### Konsekwencje
 
@@ -88,8 +86,7 @@ Wybrano następujące technologie:
 
 ### Rozważane alternatywy
 
-- Python z frameworkiem FastAPI.
-- Java z frameworkiem Spring Boot.
+- Brak
 
 ### Konsekwencje
 
@@ -121,8 +118,7 @@ W komunikacji wykorzystywane są metody HTTP:
 
 ### Rozważane alternatywy
 
-- GraphQL – alternatywny sposób komunikacji pomiędzy frontendem i backendem.
-- WebSocket – mechanizm umożliwiający komunikację w czasie rzeczywistym.
+- Brak
 
 ### Konsekwencje
 
