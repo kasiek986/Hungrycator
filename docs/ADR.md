@@ -2,7 +2,7 @@
 
 ## Wprowadzenie
 
-Dokument przedstawia najważniejsze decyzje architektoniczne podjęte podczas projektowania i tworzenia aplikacji **Hungrycator**. Każdy rekord ADR opisuje kontekst problemu, podjętą decyzję, rozważane alternatywy oraz konsekwencje wynikające z zastosowania wybranego rozwiązania.
+Dokument przedstawia najważniejsze decyzje architektoniczne podjęte podczas projektowania i tworzenia aplikacji Hungrycator. Każdy rekord ADR opisuje kontekst problemu, podjętą decyzję, rozważane alternatywy oraz konsekwencje wynikające z zastosowania wybranego rozwiązania.
 
 Aplikacja Hungrycator służy do zarządzania wspólną wirtualną lodówką, produktami spożywczymi, listą zakupów oraz planowania posiłków przez domowników.
 
