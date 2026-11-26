@@ -1,222 +1,141 @@
 # User Flows – Hungrycator
 
-## 1. Cel dokumentu
+## 1. Cel
 
-Celem dokumentu jest przedstawienie przepływów użytkownika (User Flows) w aplikacji Hungrycator.
+Celem diagramów User Flow jest przedstawienie kolejnych kroków, które użytkownik wykonuje podczas korzystania z funkcji „Co dziś jemy?” w aplikacji Hungrycator.
 
-User Flow przedstawia kolejne czynności wykonywane przez użytkownika, decyzje podejmowane podczas korzystania z aplikacji oraz reakcje systemu na poszczególne działania.
+Diagramy przedstawiają dwa główne procesy:
+- dodawanie propozycji posiłku;
+- głosowanie nad propozycjami posiłków.
 
-Diagramy zostały przygotowane na podstawie funkcjonalności proponowania posiłków i głosowania opisanej w historii użytkownika S-02.
-
-Dokument uwzględnia:
-- główną ścieżkę użytkownika,
-- alternatywne ścieżki działania,
-- punkty decyzyjne,
-- sytuacje błędne,
-- zakończenia sukcesem,
-- stany ładowania i puste stany.
+Użytkownik korzystający z aplikacji jest wcześniej zalogowany na swoje konto. System automatycznie rozpoznaje jego tożsamość, dlatego nie musi on wybierać domownika przed rozpoczęciem działania.
 
 ---
 
-# 2. User Flow – Dodawanie propozycji posiłku
+## 2. User Flow – dodawanie propozycji posiłku
 
-## Cel
+### Opis procesu
 
-Umożliwienie domownikowi dodania propozycji posiłku poprzez wybranie przepisu z bazy lub wpisanie własnej nazwy dania.
+Użytkownik otwiera aplikację Hungrycator i przechodzi do zakładki „Posiłki”. Następnie wybiera funkcję „Co dziś jemy?” oraz rodzaj posiłku, którego dotyczy propozycja.
 
-## Aktor
+Może wybrać przepis z dostępnej bazy lub wpisać własną propozycję. Po zatwierdzeniu system zapisuje propozycję i przypisuje ją do zalogowanego użytkownika.
 
-Domownik.
+Jeżeli zapis się powiedzie, propozycja zostaje wyświetlona na liście. W przypadku błędu użytkownik otrzymuje odpowiedni komunikat i może ponowić próbę.
 
-## Przebieg procesu
-
-1. Użytkownik otwiera aplikację Hungrycator.
-2. Wybiera swojego domownika za pomocą paska „Jesteś:”.
-3. Przechodzi do zakładki Posiłki.
-4. Otwiera ekran „Co dziś jemy?”.
-5. Wybiera rodzaj posiłku: śniadanie, obiad lub kolację.
-6. Klika pole propozycji.
-7. System udostępnia przepisy z bazy.
-8. Użytkownik decyduje, czy wybiera przepis z bazy, czy wpisuje własną propozycję.
-9. Po wybraniu lub wpisaniu dania użytkownik zatwierdza propozycję.
-10. System zapisuje propozycję i wyświetla ją na liście.
-11. Pozostali domownicy mogą zobaczyć dodane danie.
-
-## Diagram User Flow – Dodawanie propozycji
+### Diagram
 
 ```mermaid
 flowchart TD
     A([Start]) --> B[Otwarcie aplikacji]
-    B --> C[Wybór domownika]
-    C --> D[Przejście do zakładki Posiłki]
-    D --> E[Otwarcie Co dziś jemy?]
-    E --> F[Wybór rodzaju posiłku]
-    F --> G[Kliknięcie pola propozycji]
-    G --> H[Wyświetlenie przepisów]
-    H --> I{Sposób dodania propozycji}
-
-    I -->|Przepis z bazy| J[Wybór przepisu]
-    I -->|Własna propozycja| K[Wpisanie nazwy dania]
-
-    J --> L[Zatwierdzenie propozycji]
-    K --> L
-
-    L --> M{Czy propozycja została zapisana?}
-    M -->|Tak| N[Wyświetlenie karty propozycji]
-    M -->|Nie| O[Wyświetlenie informacji o błędzie]
-    O --> P[Poprawienie danych lub ponowienie próby]
-    P --> L
-
-    N --> Q([Koniec – propozycja dodana])
+    B --> C[Przejście do zakładki Posiłki]
+    C --> D[Otwarcie funkcji Co dziś jemy?]
+    D --> E[Wybór rodzaju posiłku]
+    E --> F[Otwarcie pola dodawania propozycji]
+    F --> G{Sposób dodania dania}
+    G -->|Wybór z bazy| H[Przeglądanie i wybór przepisu]
+    G -->|Własna propozycja| I[Wpisanie nazwy dania]
+    H --> J[Zatwierdzenie propozycji]
+    I --> J
+    J --> K[Przypisanie propozycji do zalogowanego użytkownika]
+    K --> L{Czy zapis się powiódł?}
+    L -->|Tak| M[Wyświetlenie propozycji na liście]
+    L -->|Nie| N[Wyświetlenie komunikatu o błędzie]
+    M --> O([Koniec])
+    N --> F
 ```
+
+### Alternatywne ścieżki i sytuacje wyjątkowe
+
+- **Wybór przepisu z bazy** – użytkownik przegląda dostępne przepisy i wybiera interesującą go propozycję.
+- **Dodanie własnego dania** – użytkownik wpisuje nazwę posiłku, którego nie ma w bazie przepisów.
+- **Błąd zapisu** – system wyświetla komunikat o niepowodzeniu i umożliwia ponowienie próby.
+- **Brak dostępnych przepisów** – użytkownik może skorzystać z możliwości wpisania własnej propozycji, jeśli jest ona dostępna.
+
+### Stany interfejsu
+
+- **Loading:** oczekiwanie na załadowanie dostępnych przepisów lub zapisanie propozycji.
+- **Empty:** brak dostępnych przepisów lub propozycji.
+- **Error:** nie udało się pobrać danych albo zapisać propozycji.
+- **Success:** propozycja została poprawnie dodana i pojawia się na liście.
 
 ---
 
-# 3. User Flow – Głosowanie na propozycję posiłku
+## 3. User Flow – głosowanie nad propozycją posiłku
 
-## Cel
+### Opis procesu
 
-Umożliwienie domownikom wyrażenia opinii na temat zaproponowanego dania poprzez wybór jednej z trzech opcji: Tak, Może lub Nie.
+Użytkownik otwiera aplikację Hungrycator i przechodzi do zakładki „Posiłki”, a następnie wybiera funkcję „Co dziś jemy?”. Po wybraniu rodzaju posiłku wyświetla się lista dostępnych propozycji.
 
-## Aktor
+Użytkownik wybiera interesujące go danie i oddaje głos, wybierając jedną z trzech opcji: „Tak”, „Może” lub „Nie”.
 
-Domownik.
+System zapisuje głos i przypisuje go do zalogowanego użytkownika. Następnie sprawdza, czy wszyscy domownicy oddali już swoje głosy. Jeżeli nie, lista propozycji jest odświeżana, a użytkownicy mogą oczekiwać na pozostałe głosy. Po oddaniu głosów przez wszystkich domowników system przedstawia wynik głosowania.
 
-## Przebieg procesu
-
-1. Użytkownik otwiera aplikację Hungrycator.
-2. Wybiera swojego domownika.
-3. Przechodzi do zakładki Posiłki.
-4. Otwiera ekran „Co dziś jemy?”.
-5. Wybiera rodzaj posiłku.
-6. Przegląda dostępne propozycje.
-7. Wybiera interesującą go propozycję.
-8. Oddaje głos, wybierając Tak, Może lub Nie.
-9. System zapisuje głos.
-10. System aktualizuje informacje o głosowaniu.
-11. Użytkownik oczekuje na głosy pozostałych domowników.
-12. Po oddaniu głosów przez wszystkich domowników głosowanie zostaje zakończone.
-13. System przedstawia wynik głosowania.
-
-## Diagram User Flow – Głosowanie
+### Diagram
 
 ```mermaid
 flowchart TD
     A([Start]) --> B[Otwarcie aplikacji]
-    B --> C[Wybór domownika]
-    C --> D[Przejście do zakładki Posiłki]
-    D --> E[Otwarcie Co dziś jemy?]
-    E --> F[Wybór rodzaju posiłku]
-    F --> G[Wyświetlenie propozycji]
-    G --> H{Czy są dostępne propozycje?}
-
-    H -->|Nie| I[Brak propozycji]
-    I --> J([Koniec – oczekiwanie na dodanie propozycji])
-
-    H -->|Tak| K[Wybór dania]
-    K --> L{Wybór głosu}
-
-    L -->|Tak| M[Oddanie głosu Tak]
-    L -->|Może| N[Oddanie głosu Może]
-    L -->|Nie| O[Oddanie głosu Nie]
-
-    M --> P[Zapisanie głosu]
-    N --> P
-    O --> P
-
-    P --> Q{Czy wszyscy domownicy zagłosowali?}
-
-    Q -->|Nie| R[Oczekiwanie na pozostałe głosy]
-    R --> S[Aktualizacja widoku]
-    S --> Q
-
-    Q -->|Tak| T[Zakończenie głosowania]
-    T --> U[Wyświetlenie wyniku]
-    U --> V([Koniec])
+    B --> C[Przejście do zakładki Posiłki]
+    C --> D[Otwarcie funkcji Co dziś jemy?]
+    D --> E[Wybór rodzaju posiłku]
+    E --> F[Pobranie i wyświetlenie propozycji]
+    F --> G{Czy są dostępne propozycje?}
+    G -->|Nie| H[Wyświetlenie informacji o braku propozycji]
+    H --> I([Koniec])
+    G -->|Tak| J[Wybór propozycji dania]
+    J --> K[Oddanie głosu: Tak, Może lub Nie]
+    K --> L[Przypisanie głosu do zalogowanego użytkownika]
+    L --> M{Czy głos został zapisany?}
+    M -->|Nie| N[Wyświetlenie komunikatu o błędzie]
+    N --> K
+    M -->|Tak| O{Czy wszyscy domownicy zagłosowali?}
+    O -->|Nie| P[Oczekiwanie na głosy pozostałych domowników]
+    P --> Q[Odświeżenie listy propozycji]
+    Q --> O
+    O -->|Tak| R[Wyświetlenie wyniku głosowania]
+    R --> S([Koniec])
 ```
 
----
+### Alternatywne ścieżki i sytuacje wyjątkowe
 
-# 4. Alternatywne ścieżki i sytuacje wyjątkowe
+- **Brak propozycji** – system wyświetla informację o braku dostępnych dań.
+- **Błąd zapisu głosu** – użytkownik otrzymuje komunikat o błędzie i może ponowić próbę.
+- **Pozostali domownicy jeszcze nie zagłosowali** – system oczekuje na ich głosy i odświeża dane.
+- **Wszyscy domownicy zagłosowali** – system przedstawia wynik głosowania.
 
-Podczas korzystania z aplikacji mogą wystąpić sytuacje, w których użytkownik nie może przejść standardową ścieżką.
+### Stany interfejsu
 
-| Sytuacja | Reakcja systemu | Możliwe działanie użytkownika |
-|---|---|---|
-| Brak dostępnych przepisów | Wyświetlenie pustej listy przepisów. | Wpisanie własnej propozycji. |
-| Brak propozycji posiłków | Wyświetlenie pustego widoku. | Dodanie nowej propozycji lub oczekiwanie. |
-| Niepoprawne dane propozycji | Wyświetlenie informacji o błędzie. | Poprawienie danych i ponowienie próby. |
-| Problem z zapisaniem propozycji | Poinformowanie użytkownika o niepowodzeniu operacji. | Ponowienie próby. |
-| Brak wszystkich głosów | Głosowanie pozostaje w toku. | Oczekiwanie na pozostałych domowników. |
-| Brak połączenia z serwerem | Wyświetlenie informacji o problemie z połączeniem. | Ponowienie operacji po przywróceniu połączenia. |
-
-Uwaga: powyższe sytuacje błędne i reakcje interfejsu opisują oczekiwane zachowanie projektowe. Nie wszystkie komunikaty i widoki błędów są potwierdzone w obecnej implementacji.
+- **Loading:** oczekiwanie na pobranie listy propozycji lub zapisanie głosu.
+- **Empty:** brak propozycji do głosowania.
+- **Error:** nie udało się pobrać propozycji lub zapisać głosu.
+- **Success:** głos został zapisany, a po zakończeniu głosowania wyświetlany jest jego wynik.
 
 ---
 
-# 5. Stany systemu
+## 4. Powiązanie User Flow z makietami Figma
 
-W trakcie korzystania z aplikacji należy uwzględnić różne stany interfejsu.
+Diagramy User Flow powinny odpowiadać ekranom i elementom interfejsu przedstawionym w projekcie Figma.
 
-### 5.1. Stan ładowania (Loading State)
+| Element User Flow | Odpowiadający ekran lub element w Figmie |
+|---|---|
+| Otwarcie aplikacji | Ekran główny aplikacji |
+| Przejście do zakładki „Posiłki” | Zakładka „Posiłki” |
+| Otwarcie „Co dziś jemy?” | Ekran funkcji wyboru posiłku |
+| Wybór rodzaju posiłku | Element wyboru śniadania, obiadu lub kolacji |
+| Dodawanie propozycji | Pole lub ekran dodawania dania |
+| Przeglądanie przepisów | Lista dostępnych przepisów |
+| Wyświetlenie propozycji | Lista dodanych propozycji |
+| Oddanie głosu | Przyciski „Tak”, „Może” i „Nie” |
+| Wyświetlenie wyniku | Ekran lub element prezentujący wynik głosowania |
 
-Występuje podczas pobierania danych z serwera, np. listy przepisów lub propozycji posiłków.
-
-Oczekiwane zachowanie:
-- wyświetlenie informacji o ładowaniu,
-- zablokowanie ponownego wysłania tej samej operacji do czasu jej zakończenia,
-- pokazanie pobranych danych po zakończeniu operacji.
-
-### 5.2. Stan pusty (Empty State)
-
-Występuje, gdy nie ma jeszcze żadnych propozycji posiłków lub dostępnych danych do wyświetlenia.
-
-Oczekiwane zachowanie:
-- wyświetlenie informacji o braku propozycji,
-- umożliwienie użytkownikowi dodania nowego dania,
-- zachęcenie do skorzystania z dostępnych funkcji aplikacji.
-
-### 5.3. Stan błędu (Error State)
-
-Występuje, gdy system nie może wykonać żądanej operacji.
-
-Oczekiwane zachowanie:
-- wyświetlenie komunikatu o błędzie,
-- poinformowanie użytkownika o niepowodzeniu operacji,
-- umożliwienie ponowienia działania.
-
-### 5.4. Stan sukcesu (Success State)
-
-Występuje, gdy operacja zostanie wykonana poprawnie.
-
-Przykłady:
-- dodanie nowej propozycji,
-- zapisanie głosu,
-- zakończenie głosowania.
-
-Oczekiwane zachowanie:
-- aktualizacja widoku,
-- wyświetlenie nowych danych,
-- poinformowanie użytkownika o powodzeniu operacji.
+**Uwaga:** ostateczne nazwy ekranów i elementów należy dopasować do rzeczywistych makiet w Figmie. Jeżeli dany ekran lub stan nie został zaprojektowany, należy oznaczyć go jako brakujący element do uzupełnienia.
 
 ---
 
-# 6. Powiązanie User Flows z funkcjonalnościami Hungrycatora
+## 5. Podsumowanie
 
-| User Flow | Powiązana funkcjonalność | Historia użytkownika |
-|---|---|---|
-| Dodawanie propozycji posiłku | Wybór przepisu lub dodanie własnego dania | S-02 |
-| Głosowanie na posiłek | Oddawanie głosów Tak / Może / Nie | S-02 |
-| Aktualizacja głosowania | Synchronizacja danych pomiędzy domownikami | S-02 |
+Przedstawione User Flows pokazują dwa podstawowe sposoby korzystania z funkcji „Co dziś jemy?” – dodawanie własnych propozycji oraz głosowanie nad propozycjami innych domowników.
 
----
+Oba procesy rozpoczynają się od otwarcia aplikacji przez zalogowanego użytkownika. System automatycznie rozpoznaje jego konto i przypisuje do niego wykonywane działania.
 
-# 7. Podsumowanie
-
-Przygotowane diagramy User Flows przedstawiają najważniejsze ścieżki użytkowników podczas korzystania z funkcji proponowania posiłków i głosowania.
-
-Pierwszy diagram opisuje proces dodawania propozycji, uwzględniając możliwość wyboru przepisu z bazy lub wpisania własnego dania.
-
-Drugi diagram przedstawia proces głosowania, w którym domownicy mogą wyrazić swoją opinię poprzez wybór jednej z trzech dostępnych odpowiedzi.
-
-Uwzględnienie alternatywnych ścieżek, punktów decyzyjnych oraz stanów systemu pozwala lepiej zrozumieć sposób działania aplikacji i stanowi podstawę do dalszego projektowania oraz weryfikacji interfejsu Hungrycatora.
+Diagramy uwzględniają również alternatywne ścieżki, sytuacje błędów oraz stany interfejsu, dzięki czemu przedstawiają nie tylko podstawowy przebieg procesu, ale także możliwe sytuacje wyjątkowe.
