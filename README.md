@@ -73,6 +73,28 @@ Serwer deweloperski Vite przekazuje zapytania `/api` do backendu, więc oba proc
 
 ## Zrealizowane historie użytkownika
 
+### S-01: Rejestracja produktów w wirtualnej lodówce (FR-01)
+
+Zakładka **Lodówka** → ekran „Moja lodówka”:
+
+- przycisk **+** otwiera formularz: nazwa, kategoria, ilość, jednostka i termin ważności wybierany jednym kliknięciem („Do 3 dni”, „Do tygodnia”, „Ponad tydzień”, NFR-06),
+- opcja **„Inna data”** pokazuje kalendarz (dzień/miesiąc/rok); aplikacja sama liczy, ile dni zostało do końca terminu (np. „do 05.12.2026, jeszcze 9 dni”),
+- do sekcji **„Zjedz mnie najpierw”** trafiają produkty z terminem „Do 3 dni” albo z własną datą, do której zostały najwyżej 3 dni; pozostałe są w „Pozostałe produkty”,
+- przyciski **−** / **+** zmieniają ilość o 1; przy ilości 0 produkt znika z lodówki,
+- ten sam produkt nie może zostać dodany dwa razy (zamiast tego zmienia się jego ilość),
+- lodówka jest wspólna dla S-01 i S-02: przepisy w zakładce Posiłki od razu pokazują, czy składnik jest w lodówce,
+- widok odświeża się co 2 s, więc zmiany innych domowników pojawiają się w ciągu 3 s (NFR-04).
+
+API:
+
+| Metoda | Ścieżka           | Opis                                                                  |
+| :----- | :---------------- | :-------------------------------------------------------------------- |
+| GET    | `/api/fridge`     | Produkty w lodówce, od najkrótszego terminu ważności                  |
+| POST   | `/api/fridge`     | Nowy produkt: `{ name, category, quantity, unit, expiry, expiresOn }` |
+| PATCH  | `/api/fridge/:id` | Zmiana ilości: `{ change: 1 \| -1 }`; przy ilości 0 zwraca `204`      |
+
+`expiry` to `soon`, `week`, `later` albo `date`; przy `date` pole `expiresOn` zawiera datę w formacie `RRRR-MM-DD`.
+
 ### S-02: Proponowanie posiłku i głosowanie (FR-02)
 
 Zakładka **Posiłki** → ekran „Co dziś jemy?”:
@@ -98,7 +120,7 @@ API (wymaga nagłówka `X-User-Id` z identyfikatorem domownika: `ania`, `marek` 
 
 ## Testy
 
-Testy API odpowiadające scenariuszom `TC-FR-02` z `tests/acceptance-tests.md`:
+Testy API odpowiadające scenariuszom `TC-FR-01` i `TC-FR-02` z `tests/acceptance-tests.md`:
 
 ```bash
 npm --prefix backend test

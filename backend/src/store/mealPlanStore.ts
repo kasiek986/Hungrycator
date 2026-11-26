@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { ApiError } from "../errors.js";
+import { normalize } from "../text.js";
 import type {
-  FridgeItem,
   Household,
   Member,
   MealType,
@@ -14,23 +14,21 @@ import type {
   VoteSummary,
   VoteValue,
 } from "../types.js";
+import type { FridgeStore } from "./fridgeStore.js";
 
 export const MAX_PROPOSAL_NAME_LENGTH = 60;
-
-const normalize = (value: string): string =>
-  value.trim().toLocaleLowerCase("pl-PL").replace(/\s+/g, " ");
 
 export interface MealPlanStoreOptions {
   household: Household;
   recipes: Recipe[];
-  fridge: FridgeItem[];
+  fridge: FridgeStore;
   now?: () => Date;
 }
 
 export class MealPlanStore {
   private readonly household: Household;
   private readonly recipes: Recipe[];
-  private readonly fridge: FridgeItem[];
+  private readonly fridge: FridgeStore;
   private readonly proposals: Proposal[] = [];
   private readonly now: () => Date;
 
@@ -166,17 +164,13 @@ export class MealPlanStore {
     return name;
   }
 
+  // Składniki są porównywane z aktualnym stanem wspólnej lodówki (S-01).
   private toRecipeView(recipe: Recipe): RecipeView {
-    const fridgeNames = new Set(
-      this.fridge
-        .filter((item) => item.quantity > 0)
-        .map((item) => normalize(item.name)),
-    );
     return {
       ...recipe,
       ingredients: recipe.ingredients.map((ingredient) => ({
         ...ingredient,
-        inFridge: fridgeNames.has(normalize(ingredient.name)),
+        inFridge: this.fridge.has(ingredient.name),
       })),
     };
   }

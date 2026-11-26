@@ -6,6 +6,8 @@ export type IconName =
   | "utensils"
   | "user"
   | "plus"
+  | "minus"
+  | "trash"
   | "check"
   | "close"
   | "heart"
@@ -22,6 +24,8 @@ const PATHS: Record<IconName, string> = {
   utensils: "M7 3v8m-2-8v5a2 2 0 0 0 4 0V3M7 11v10M16 3c-2 1-3 4-3 7h3v11",
   user: "M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 8a7 7 0 0 1 14 0",
   plus: "M12 5v14M5 12h14",
+  minus: "M5 12h14",
+  trash: "M5 7h14M10 11v6m4-6v6M6 7l1 13h10l1-13M9 7V4h6v3",
   check: "m5 12.5 4.5 4.5L19 7.5",
   close: "M6 6l12 12M18 6 6 18",
   heart: "M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z",

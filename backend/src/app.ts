@@ -1,11 +1,14 @@
 import express from "express";
 import type { NextFunction, Request, Response } from "express";
 import { ApiError } from "./errors.js";
+import type { FridgeStore } from "./store/fridgeStore.js";
 import type { MealPlanStore } from "./store/mealPlanStore.js";
 import {
   parseDate,
   parseMealType,
+  parseNewFridgeItem,
   parseNewProposal,
+  parseQuantityChange,
   parseVoteValue,
 } from "./validation.js";
 
@@ -24,7 +27,10 @@ function requireMemberId(store: MealPlanStore, req: Request): string {
   return memberId;
 }
 
-export function createApp(store: MealPlanStore): express.Express {
+export function createApp(
+  store: MealPlanStore,
+  fridge: FridgeStore,
+): express.Express {
   const app = express();
   app.use(express.json());
 
@@ -70,6 +76,32 @@ export function createApp(store: MealPlanStore): express.Express {
     const memberId = requireMemberId(store, req);
     store.deleteProposal(memberId, req.params.id);
     res.status(204).end();
+  });
+
+  // ---------- S-01: wirtualna lodówka ----------
+
+  app.get("/api/fridge", (req, res) => {
+    requireMemberId(store, req);
+    res.json(fridge.list());
+  });
+
+  app.post("/api/fridge", (req, res) => {
+    requireMemberId(store, req);
+    const item = fridge.add(parseNewFridgeItem(req.body));
+    res.status(201).json(item);
+  });
+
+  app.patch("/api/fridge/:id", (req, res) => {
+    requireMemberId(store, req);
+    const item = fridge.changeQuantity(
+      req.params.id,
+      parseQuantityChange(req.body),
+    );
+    if (item) {
+      res.json(item);
+    } else {
+      res.status(204).end(); // ilość spadła do zera – produkt usunięty
+    }
   });
 
   app.use("/api", (_req, res) => {

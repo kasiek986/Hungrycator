@@ -33,11 +33,41 @@ export interface Recipe {
   ingredients: Ingredient[];
 }
 
-export interface FridgeItem {
+export type ProductCategory =
+  | "vegetables"
+  | "fruit"
+  | "dairy"
+  | "meat"
+  | "bakery"
+  | "other";
+
+export type Unit = "szt." | "opak." | "g" | "kg" | "ml" | "l";
+
+/** Gotowe terminy wybierane jednym kliknięciem, bez wpisywania daty (NFR-06). */
+export type ExpiryPreset = "soon" | "week" | "later";
+
+export type Expiry = ExpiryPreset | "date";
+
+/** Termin ważności: gotowa opcja albo własna data w formacie RRRR-MM-DD. */
+export type ExpiryInfo =
+  | { expiry: ExpiryPreset; expiresOn: null }
+  | { expiry: "date"; expiresOn: string };
+
+export type NewFridgeItemInput = {
   name: string;
+  category: ProductCategory;
   quantity: number;
-  unit: string;
-}
+  unit: Unit;
+} & ExpiryInfo;
+
+export type FridgeItem = { id: string } & NewFridgeItemInput;
+
+export type FridgeItemView = FridgeItem & {
+  /** Ile dni zostało do końca terminu (tylko dla własnej daty). */
+  daysLeft: number | null;
+  /** Czy produkt trafia do sekcji „Zjedz mnie najpierw”. */
+  eatFirst: boolean;
+};
 
 export interface Vote {
   memberId: string;

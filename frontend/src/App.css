@@ -99,6 +99,11 @@
   color: var(--green-900);
 }
 
+.pill--red {
+  background: var(--red-100);
+  color: var(--red-600);
+}
+
 .icon-button {
   position: relative;
   display: grid;
@@ -216,7 +221,8 @@
   white-space: nowrap;
 }
 
-.chip[aria-selected="true"] {
+.chip[aria-selected="true"],
+.chip[aria-checked="true"] {
   background: var(--green-700);
   border-color: var(--green-700);
   color: #fff;
@@ -675,6 +681,136 @@
     opacity: 0;
     transform: translate(-50%, 8px);
   }
+}
+
+/* ---------- Lodówka (S-01) ---------- */
+
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.product-form .button-primary {
+  margin-top: 4px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.field__label {
+  padding: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+.field__input {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font: inherit;
+  font-size: 15px;
+}
+
+.field__input:focus {
+  outline: none;
+  border-color: var(--green-700);
+}
+
+.field__hint {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--green-700);
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.product-form .chips {
+  flex-wrap: wrap;
+}
+
+.fridge-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fridge-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+
+.fridge-item:first-child {
+  border-top: none;
+}
+
+.fridge-item__text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.fridge-item__name {
+  font-weight: 700;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+.fridge-item__meta {
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.fridge-item__meta--late {
+  color: var(--red-600);
+  font-weight: 700;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.stepper__button {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 10px;
+  background: var(--green-50);
+  color: var(--green-700);
+}
+
+.stepper__button:disabled {
+  opacity: 0.5;
+}
+
+.stepper__value {
+  min-width: 56px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
 }
 
 /* ---------- Dolna nawigacja ---------- */

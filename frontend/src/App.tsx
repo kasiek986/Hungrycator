@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { api } from "./api";
 import { BottomNav, type TabId } from "./components/BottomNav";
 import { MemberSwitcher } from "./components/MemberSwitcher";
+import { FridgeScreen } from "./screens/FridgeScreen";
 import { MealsScreen } from "./screens/MealsScreen";
 import { PlaceholderScreen } from "./screens/PlaceholderScreen";
 import type { Household, Recipe } from "./types";
@@ -10,9 +11,11 @@ import "./App.css";
 const DEFAULT_MEMBER_ID = "ania";
 const MEMBER_PARAM = "jako";
 
-const PLACEHOLDERS: Record<Exclude<TabId, "meals">, [string, string]> = {
+const PLACEHOLDERS: Record<
+  Exclude<TabId, "meals" | "fridge">,
+  [string, string]
+> = {
   home: ["Cześć!", "S-01"],
-  fridge: ["Moja lodówka", "S-01"],
   shopping: ["Lista zakupów", "S-04"],
   profile: ["Gospodarstwo", "S-05"],
 };
@@ -35,6 +38,8 @@ function App() {
   const [data, setData] = useState<AppData | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
 
+  // Przepisy pokazują, ile składników jest w lodówce, więc pobieramy je
+  // ponownie po zmianie zakładki (np. po dodaniu produktu w lodówce).
   useEffect(() => {
     let cancelled = false;
     Promise.all([api.getHousehold(memberId), api.getRecipes(memberId)])
@@ -56,7 +61,7 @@ function App() {
     return () => {
       cancelled = true;
     };
-  }, [memberId]);
+  }, [memberId, tab]);
 
   const switchMember = (id: string) => {
     const url = new URL(window.location.href);
@@ -94,14 +99,16 @@ function App() {
         currentId={memberId}
         onChange={switchMember}
       />
-      {tab === "meals" ? (
+      {tab === "meals" && (
         <MealsScreen
           key={memberId}
           household={data.household}
           memberId={memberId}
           recipes={data.recipes}
         />
-      ) : (
+      )}
+      {tab === "fridge" && <FridgeScreen key={memberId} memberId={memberId} />}
+      {tab !== "meals" && tab !== "fridge" && (
         <PlaceholderScreen
           title={PLACEHOLDERS[tab][0]}
           story={PLACEHOLDERS[tab][1]}

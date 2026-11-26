@@ -4,6 +4,7 @@ import type { Server } from "node:http";
 import { after, before, describe, test } from "node:test";
 import { createApp } from "./app.js";
 import { seedFridge, seedHousehold, seedRecipes } from "./data/seed.js";
+import { FridgeStore } from "./store/fridgeStore.js";
 import { MealPlanStore } from "./store/mealPlanStore.js";
 import type { ProposalView } from "./types.js";
 
@@ -37,12 +38,13 @@ const dinnerFor = (userId: string) =>
   api("GET", `/api/proposals?date=${TODAY}&mealType=dinner`, userId);
 
 before(async () => {
+  const fridge = new FridgeStore(seedFridge);
   const store = new MealPlanStore({
     household: seedHousehold,
     recipes: seedRecipes,
-    fridge: seedFridge,
+    fridge,
   });
-  server = createApp(store).listen(0);
+  server = createApp(store, fridge).listen(0);
   await new Promise<void>((resolve) => server.once("listening", resolve));
   baseUrl = `http://127.0.0.1:${(server.address() as AddressInfo).port}`;
 });

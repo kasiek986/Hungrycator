@@ -1,6 +1,8 @@
 import type {
+  FridgeItem,
   Household,
   MealType,
+  NewFridgeItem,
   NewProposal,
   Proposal,
   Recipe,
@@ -82,4 +84,19 @@ export const api = {
 
   deleteProposal: (memberId: string, proposalId: string) =>
     request<void>(memberId, `/proposals/${proposalId}`, { method: "DELETE" }),
+
+  getFridge: (memberId: string) => request<FridgeItem[]>(memberId, "/fridge"),
+
+  addFridgeItem: (memberId: string, item: NewFridgeItem) =>
+    request<FridgeItem>(memberId, "/fridge", {
+      method: "POST",
+      body: JSON.stringify(item),
+    }),
+
+  // Zwraca produkt po zmianie albo nic (204), gdy produkt został usunięty.
+  changeQuantity: (memberId: string, itemId: string, change: 1 | -1) =>
+    request<FridgeItem | undefined>(memberId, `/fridge/${itemId}`, {
+      method: "PATCH",
+      body: JSON.stringify({ change }),
+    }),
 };
