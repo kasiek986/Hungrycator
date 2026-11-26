@@ -2,15 +2,13 @@
 
 ## 1. Cel dokumentu
 
-Celem dokumentu jest przedstawienie scenariuszy użytkownika opisujących sposób korzystania z wybranych funkcjonalności aplikacji Hungrycator.
+Celem dokumentu jest przedstawienie scenariuszy pokazujących, jak użytkownicy korzystają z wybranych funkcji aplikacji Hungrycator.
 
-Scenariusze przedstawiają działania użytkownika, reakcje systemu oraz możliwe rezultaty wykonanych czynności.
+Scenariusze opisują kolejne działania użytkownika, reakcje aplikacji oraz możliwe efekty tych działań.
 
-Opracowane scenariusze dotyczą funkcji proponowania posiłków i głosowania domowników, która została opisana w dokumentacji projektu jako historia użytkownika S-02.
+Dokument dotyczy funkcji proponowania posiłków i głosowania domowników, która została opisana w projekcie jako historia użytkownika S-02.
 
 ## 2. Aktorzy
-
-W scenariuszach występują następujący aktorzy:
 
 - **Domownik** – osoba korzystająca z aplikacji Hungrycator, która może dodawać propozycje posiłków i oddawać głosy.
 - **Pozostali domownicy** – inni członkowie gospodarstwa domowego, którzy mogą przeglądać propozycje i uczestniczyć w głosowaniu.
@@ -131,7 +129,6 @@ Pozostali domownicy.
 ### Rezultat końcowy
 
 Głosy zostają zapisane, a po oddaniu głosów przez wszystkich domowników system kończy głosowanie.
-
 Danie zostaje zaakceptowane, jeżeli liczba głosów „Tak” jest większa niż liczba głosów „Nie”.
 
 ---
@@ -144,12 +141,4 @@ Danie zostaje zaakceptowane, jeżeli liczba głosów „Tak” jest większa ni�
 | Dodanie własnej propozycji | Anna Kowalska | Dodanie własnego pomysłu na posiłek |
 | Głosowanie na posiłek | Marek Nowak | Wyrażenie opinii i uczestnictwo we wspólnej decyzji |
 
----
 
-# 7. Podsumowanie
-
-Przygotowane scenariusze przedstawiają najważniejsze działania użytkowników związane z funkcją proponowania posiłków i głosowania w aplikacji Hungrycator.
-
-Pokazują one zarówno sposób dodawania propozycji z bazy przepisów, jak i możliwość wpisania własnego dania oraz uczestniczenia w głosowaniu.
-
-Scenariusze stanowią podstawę do opracowania diagramów User Flows, które przedstawiają poszczególne ścieżki użytkownika, decyzje oraz możliwe rezultaty interakcji z aplikacją.
