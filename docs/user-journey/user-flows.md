@@ -130,12 +130,3 @@ Diagramy User Flow powinny odpowiadać ekranom i elementom interfejsu przedstawi
 
 **Uwaga:** ostateczne nazwy ekranów i elementów należy dopasować do rzeczywistych makiet w Figmie. Jeżeli dany ekran lub stan nie został zaprojektowany, należy oznaczyć go jako brakujący element do uzupełnienia.
 
----
-
-## 5. Podsumowanie
-
-Przedstawione User Flows pokazują dwa podstawowe sposoby korzystania z funkcji „Co dziś jemy?” – dodawanie własnych propozycji oraz głosowanie nad propozycjami innych domowników.
-
-Oba procesy rozpoczynają się od otwarcia aplikacji przez zalogowanego użytkownika. System automatycznie rozpoznaje jego konto i przypisuje do niego wykonywane działania.
-
-Diagramy uwzględniają również alternatywne ścieżki, sytuacje błędów oraz stany interfejsu, dzięki czemu przedstawiają nie tylko podstawowy przebieg procesu, ale także możliwe sytuacje wyjątkowe.
