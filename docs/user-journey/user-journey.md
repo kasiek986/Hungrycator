@@ -74,15 +74,14 @@ Anna oczekuje, że aplikacja pozwoli jej szybko sprawdzić zawartość lodówki,
 
 | Etap | Działanie użytkownika | Touchpoints (makiety High-Fi) | Pain Points | Opportunities |
 |---|---|---|---|---|
-| 1. Otwarcie aplikacji | Anna uruchamia aplikację Hungrycator. | Ekran główny aplikacji – widok początkowy po uruchomieniu. | Użytkownik może potrzebować chwili, aby odnaleźć interesującą go funkcję. | Uproszczenie nawigacji i czytelne rozmieszczenie funkcji. |
-| 2. Wybór użytkownika | Anna wybiera siebie na pasku „Jesteś:”. | Ekran główny – pasek wyboru domownika „Jesteś:”. | Możliwość przypadkowego wybrania innego domownika. | Wyraźniejsze oznaczenie aktualnie wybranego użytkownika. |
-| 3. Przejście do posiłków | Anna otwiera zakładkę Posiłki. | Nawigacja główna – zakładka „Posiłki”. | Konieczność odnalezienia odpowiedniej funkcji. | Łatwy dostęp do planowania posiłków. |
-| 4. Wybór rodzaju posiłku | Anna wybiera śniadanie, obiad lub kolację. | Widok „Co dziś jemy?” – selektor rodzaju posiłku. | Niepewność, jaki posiłek najlepiej zaproponować. | Czytelne przedstawienie dostępnych rodzajów posiłków. |
-| 5. Wyszukiwanie przepisu | Anna korzysta z pola propozycji, aby znaleźć przepis z bazy. | Widok „Co dziś jemy?” – pole wyszukiwania/propozycji oraz lista dostępnych przepisów. | Nie zawsze wie, jaki posiłek wybrać. | Ułatwienie przeglądania przepisów i prezentowania składników. |
-| 6. Wybór propozycji | Anna wybiera przepis lub wpisuje własną propozycję, np. „Kebab”. | Widok dodawania propozycji – lista przepisów, pole tekstowe do wpisania własnej propozycji i przycisk zatwierdzania. | Brak odpowiedniego przepisu w bazie. | Możliwość łatwego dodawania własnych propozycji. |
-| 7. Dodanie propozycji | Anna zatwierdza propozycję, która pojawia się na liście. | Widok „Co dziś jemy?” – lista propozycji i karta dodanego posiłku. | Niepewność, czy propozycja została poprawnie dodana. | Wyraźne potwierdzenie dodania propozycji. |
-| 8. Oczekiwanie na głosy domowników | Anna oczekuje, aż pozostali domownicy oddadzą głosy na zaproponowany posiłek. | Karta propozycji – sekcja głosowania z przyciskami „Tak”, „Może” i „Nie”. | Konieczność oczekiwania na głosy pozostałych osób. | Czytelna prezentacja oddanych głosów i postępu głosowania. |
-| 9. Sprawdzenie wyniku | Anna sprawdza wynik po oddaniu głosów przez wszystkich domowników. | Widok „Co dziś jemy?” – karta propozycji i podsumowanie wyników głosowania. | Możliwość braku zgody między domownikami. | Wyraźne przedstawienie końcowego wyniku głosowania. |
+| 1. Otwarcie aplikacji | Anna loguje się do aplikacji Hungrycator i przechodzi do ekranu głównego. | Ekran główny aplikacji – widok początkowy po zalogowaniu. | Użytkownik może potrzebować chwili, aby odnaleźć interesującą go funkcję. | Uproszczenie nawigacji i czytelne rozmieszczenie funkcji. |
+| 2. Przejście do posiłków | Anna otwiera zakładkę Posiłki. | Nawigacja główna – zakładka „Posiłki”. | Konieczność odnalezienia odpowiedniej funkcji. | Łatwy dostęp do planowania posiłków. |
+| 3. Wybór rodzaju posiłku | Anna wybiera śniadanie, obiad lub kolację. | Widok „Co dziś jemy?” – selektor rodzaju posiłku. | Niepewność, jaki posiłek najlepiej zaproponować. | Czytelne przedstawienie dostępnych rodzajów posiłków. |
+| 4. Wyszukiwanie przepisu | Anna korzysta z pola propozycji, aby znaleźć przepis z bazy. | Widok „Co dziś jemy?” – pole wyszukiwania/propozycji oraz lista dostępnych przepisów. | Nie zawsze wie, jaki posiłek wybrać. | Ułatwienie przeglądania przepisów i prezentowania składników. |
+| 5. Wybór propozycji | Anna wybiera przepis lub wpisuje własną propozycję, np. „Kebab”. | Widok dodawania propozycji – lista przepisów, pole tekstowe do wpisania własnej propozycji i przycisk zatwierdzania. | Brak odpowiedniego przepisu w bazie. | Możliwość łatwego dodawania własnych propozycji. |
+| 6. Dodanie propozycji | Anna zatwierdza propozycję, która pojawia się na liście. | Widok „Co dziś jemy?” – lista propozycji i karta dodanego posiłku. | Niepewność, czy propozycja została poprawnie dodana. | Wyraźne potwierdzenie dodania propozycji. |
+| 7. Oczekiwanie na głosy domowników | Anna oczekuje, aż pozostali domownicy oddadzą głosy na zaproponowany posiłek. | Karta propozycji – sekcja głosowania z przyciskami „Tak”, „Może” i „Nie”. | Konieczność oczekiwania na głosy pozostałych osób. | Czytelna prezentacja oddanych głosów i postępu głosowania. |
+| 8. Sprawdzenie wyniku | Anna sprawdza wynik po oddaniu głosów przez wszystkich domowników. | Widok „Co dziś jemy?” – karta propozycji i podsumowanie wyników głosowania. | Możliwość braku zgody między domownikami. | Wyraźne przedstawienie końcowego wyniku głosowania. |
 
 ---
 
@@ -152,12 +151,13 @@ Marek oczekuje, że aplikacja ułatwi mu kontrolowanie produktów spożywczych, 
 
 | Etap | Działanie użytkownika | Touchpoints (makiety High-Fi) | Pain Points | Opportunities |
 |---|---|---|---|---|
-| 1. Otwarcie aplikacji | Marek uruchamia Hungrycatora po powrocie z pracy. | Ekran główny aplikacji – widok początkowy po uruchomieniu. | Brak czasu na przeglądanie wielu informacji. | Prosty i przejrzysty interfejs. |
-| 2. Wybór użytkownika | Marek wybiera siebie na pasku „Jesteś:”. | Ekran główny – pasek wyboru domownika „Jesteś:”. | Możliwość pomyłki przy wyborze użytkownika. | Czytelne oznaczenie aktywnego domownika. |
-| 3. Przejście do posiłków | Marek otwiera zakładkę Posiłki i ekran „Co dziś jemy?”. | Nawigacja główna – zakładka „Posiłki”, widok „Co dziś jemy?”. | Konieczność odnalezienia odpowiedniej funkcji. | Ułatwienie dostępu do planowania posiłków. |
-| 4. Wybór rodzaju posiłku | Marek wybiera interesujący go posiłek: śniadanie, obiad lub kolację. | Widok „Co dziś jemy?” – selektor rodzaju posiłku. | Niepewność, którego posiłku dotyczą aktualne propozycje. | Wyraźne oznaczenie wybranego rodzaju posiłku. |
-| 5. Przeglądanie propozycji | Marek sprawdza dania zaproponowane przez pozostałych domowników. | Widok „Co dziś jemy?” – lista propozycji i karty posiłków. | Trudność w szybkim porównaniu kilku dań. | Czytelniejsze prezentowanie propozycji. |
-| 6. Sprawdzanie składników | Marek sprawdza składniki potrzebne do przygotowania dania. | Karta wybranej propozycji – informacje o przepisie i lista składników. | Nie wszystkie potrzebne produkty mogą znajdować się w lodówce. | Wyraźniejsze prezentowanie dostępnych i brakujących składników. |
-| 7. Oddanie głosu | Marek wybiera jedną z opcji: Tak, Może lub Nie. | Karta propozycji – przyciski głosowania „Tak”, „Może” i „Nie”. | Możliwość przypadkowego wybrania niewłaściwej odpowiedzi. | Czytelne oznaczenie wybranej odpowiedzi i potwierdzenie zapisu głosu. |
-| 8. Oczekiwanie na pozostałe głosy | Marek oczekuje, aż pozostali domownicy również zagłosują. | Widok „Co dziś jemy?” – karta propozycji i sekcja głosowania. | Niepewność, czy wszyscy domownicy oddali już swoje głosy. | Informacja o liczbie oddanych głosów i statusie głosowania. |
-| 9. Sprawdzenie wyniku | Marek sprawdza końcowy wynik głosowania. | Widok „Co dziś jemy?” – karta propozycji i podsumowanie głosów. | Możliwość odrzucenia propozycji przez większość domowników. | Czytelne przedstawienie wyniku głosowania. |
+| 1. Otwarcie aplikacji | Marek loguje się do Hungrycatora po powrocie z pracy i przechodzi do ekranu głównego. | Ekran główny aplikacji – widok początkowy po zalogowaniu. | Brak czasu na przeglądanie wielu informacji. | Prosty i przejrzysty interfejs. |
+| 2. Przejście do posiłków | Marek otwiera zakładkę Posiłki i ekran „Co dziś jemy?”. | Nawigacja główna – zakładka „Posiłki”, widok „Co dziś jemy?”. | Konieczność odnalezienia odpowiedniej funkcji. | Ułatwienie dostępu do planowania posiłków. |
+| 3. Wybór rodzaju posiłku | Marek wybiera interesujący go posiłek: śniadanie, obiad lub kolację. | Widok „Co dziś jemy?” – selektor rodzaju posiłku. | Niepewność, którego posiłku dotyczą aktualne propozycje. | Wyraźne oznaczenie wybranego rodzaju posiłku. |
+| 4. Przeglądanie propozycji | Marek sprawdza dania zaproponowane przez pozostałych domowników. | Widok „Co dziś jemy?” – lista propozycji i karty posiłków. | Trudność w szybkim porównaniu kilku dań. | Czytelniejsze prezentowanie propozycji. |
+| 5. Sprawdzanie składników | Marek sprawdza składniki potrzebne do przygotowania dania. | Karta wybranej propozycji – informacje o przepisie i lista składników. | Nie wszystkie potrzebne produkty mogą znajdować się w lodówce. | Wyraźniejsze prezentowanie dostępnych i brakujących składników. |
+| 6. Oddanie głosu | Marek wybiera jedną z opcji: Tak, Może lub Nie. | Karta propozycji – przyciski głosowania „Tak”, „Może” i „Nie”. | Możliwość przypadkowego wybrania niewłaściwej odpowiedzi. | Czytelne oznaczenie wybranej odpowiedzi i potwierdzenie zapisu głosu. |
+| 7. Oczekiwanie na pozostałe głosy | Marek oczekuje, aż pozostali domownicy również zagłosują. | Widok „Co dziś jemy?” – karta propozycji i sekcja głosowania. | Niepewność, czy wszyscy domownicy oddali już swoje głosy. | Informacja o liczbie oddanych głosów i statusie głosowania. |
+| 8. Sprawdzenie wyniku | Marek sprawdza końcowy wynik głosowania. | Widok „Co dziś jemy?” – karta propozycji i podsumowanie głosów. | Możliwość odrzucenia propozycji przez większość domowników. | Czytelne przedstawienie wyniku głosowania. |
+
+---
