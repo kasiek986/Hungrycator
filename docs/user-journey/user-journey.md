@@ -1,4 +1,4 @@
-# User Journey – Hungrycator
+# User Journey - Hungrycator
 
 ## 1. Cel dokumentu
 
@@ -119,17 +119,17 @@ Możliwościami ulepszenia aplikacji są lepsza prezentacja propozycji, czytelni
 
 # 5. Wnioski z analizy User Journey
 
-Analiza obu ścieżek użytkowników pokazuje, że funkcja „Co dziś jemy?” wspiera domowników w podejmowaniu wspólnych decyzji dotyczących posiłków.
+Analiza obu ścieżek pokazuje, że funkcja „Co dziś jemy?” pomaga domownikom wspólnie wybierać posiłki.
 
-Anna reprezentuje użytkownika, który inicjuje proces poprzez dodanie własnej propozycji. Marek reprezentuje użytkownika, który przegląda dostępne propozycje i uczestniczy w głosowaniu.
+Anna to użytkowniczka, która dodaje własną propozycję posiłku. Marek przegląda dostępne propozycje i bierze udział w głosowaniu.
 
-Najważniejsze obszary, które mogą zostać ulepszone w aplikacji Hungrycator, to:
+Na podstawie analizy można wskazać kilka rzeczy, które warto ulepszyć w aplikacji Hungrycator:
 
-1. Uproszczenie nawigacji pomiędzy ekranami.
-2. Czytelniejsza prezentacja przepisów i potrzebnych składników.
-3. Ułatwienie dodawania własnych propozycji posiłków.
-4. Wyraźne informowanie o zapisaniu oddanego głosu.
-5. Lepsza prezentacja postępu i wyniku głosowania.
-6. Ułatwienie porównywania propozycji przez domowników.
+1. Uprościć przechodzenie między ekranami.
+2. Lepiej pokazywać przepisy i potrzebne składniki.
+3. Ułatwić dodawanie propozycji posiłków.
+4. Informować użytkownika, że jego głos został zapisany.
+5. Czytelniej pokazywać wyniki głosowania.
+6. Ułatwić porównywanie propozycji.
 
-Opracowane User Journey stanowią podstawę do przygotowania scenariuszy użytkownika oraz diagramów User Flows.
+Przygotowane User Journey pomogą w stworzeniu scenariuszy użytkownika i diagramów User Flow.
