@@ -1,7 +1,7 @@
 import type { FridgeItem, Household, Recipe } from "../types.js";
 
-// Dane startowe prototypu. Do czasu podłączenia bazy danych (NFR-05)
-// stan aplikacji jest przechowywany w pamięci serwera.
+// Dane startowe prototypu. Przy pierwszym uruchomieniu serwera trafiają
+// do pustej bazy danych (db/database.ts) – później dane czytamy już z bazy.
 
 export const seedHousehold: Household = {
   id: "zielona-24",

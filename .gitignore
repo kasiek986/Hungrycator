@@ -9,6 +9,9 @@ dist/
 frontend/dist/
 backend/dist/
 
+# Local SQLite database (created on first backend start)
+backend/data/
+
 # Environment variables and secrets
 .env
 .env.*

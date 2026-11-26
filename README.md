@@ -69,7 +69,33 @@ Serwer udostępnia testowy endpoint sprawdzający jego dostępność:
 
 [http://localhost:3000/api/health](http://localhost:3000/api/health)
 
-Serwer deweloperski Vite przekazuje zapytania `/api` do backendu, więc oba procesy muszą działać jednocześnie. Dane są na razie przechowywane w pamięci serwera i resetują się przy jego restarcie.
+Serwer deweloperski Vite przekazuje zapytania `/api` do backendu, więc oba procesy muszą działać jednocześnie. Dane są zapisywane w bazie danych SQLite i nie znikają po restarcie serwera (szczegóły niżej).
+
+## Baza danych
+
+Backend przechowuje dane w relacyjnej bazie **SQLite** zapisanej w jednym pliku: `backend/data/hungrycator.db`. Korzysta z modułu `node:sqlite` wbudowanego w Node.js, więc nie trzeba instalować ani uruchamiać osobnego serwera bazy danych (ADR 5 w `docs/ADR.md`).
+
+- Przy pierwszym uruchomieniu backend sam zakłada tabele i wypełnia je danymi startowymi (gospodarstwo „Zielona 24”, domownicy, przepisy, produkty w lodówce).
+- Produkty, propozycje i głosy zostają w bazie po restarcie serwera (NFR-05). Kopia zapasowa to kopia pliku `hungrycator.db`.
+- Plik bazy jest w `.gitignore`, więc każdy członek zespołu ma własną lokalną bazę. Aby zacząć od danych startowych, zatrzymaj backend i usuń katalog `backend/data`.
+- Inną lokalizację pliku można podać w zmiennej środowiskowej `DB_PATH`.
+- Testy używają osobnej bazy w pamięci (`:memory:`), więc nie zmieniają pliku `hungrycator.db`.
+- Tabele można przeglądać w darmowym programie [DB Browser for SQLite](https://sqlitebrowser.org/) (**Open Database** → `backend/data/hungrycator.db`).
+
+Schemat (`backend/src/db/schema.ts`) odpowiada diagramowi encji `docs/EDR.png`:
+
+| Tabela                                          | Zawartość                                               |
+| :---------------------------------------------- | :------------------------------------------------------ |
+| `users`                                         | Użytkownicy (domownicy)                                 |
+| `households`                                    | Gospodarstwa domowe                                     |
+| `memberships`                                   | Przynależność do gospodarstwa, rola i kolor domownika   |
+| `invite_codes`                                  | Kody zaproszeń do gospodarstwa (FR-05, w przygotowaniu) |
+| `product_categories`                            | Kategorie produktów                                     |
+| `fridge_items`                                  | Produkty w lodówce (S-01)                               |
+| `recipes`, `recipe_ingredients`, `recipe_steps` | Przepisy, ich składniki i kroki przygotowania           |
+| `shopping_list_items`                           | Lista zakupów (FR-04, w przygotowaniu)                  |
+| `meal_proposals`                                | Propozycje posiłków (S-02)                              |
+| `votes`                                         | Głosy domowników na propozycje (S-02)                   |
 
 ## Zrealizowane historie użytkownika
 

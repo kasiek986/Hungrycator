@@ -86,8 +86,8 @@ export function createApp(
   });
 
   app.post("/api/fridge", (req, res) => {
-    requireMemberId(store, req);
-    const item = fridge.add(parseNewFridgeItem(req.body));
+    const memberId = requireMemberId(store, req);
+    const item = fridge.add(parseNewFridgeItem(req.body), memberId);
     res.status(201).json(item);
   });
 

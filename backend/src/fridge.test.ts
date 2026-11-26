@@ -3,7 +3,7 @@ import type { AddressInfo } from "node:net";
 import type { Server } from "node:http";
 import { after, before, describe, test } from "node:test";
 import { createApp } from "./app.js";
-import { seedFridge, seedHousehold, seedRecipes } from "./data/seed.js";
+import { HOUSEHOLD_ID, openDatabase } from "./db/database.js";
 import { FridgeStore, toIsoDate } from "./store/fridgeStore.js";
 import { MealPlanStore } from "./store/mealPlanStore.js";
 import type { FridgeItemView, RecipeView } from "./types.js";
@@ -45,12 +45,11 @@ const pomidory = {
 };
 
 before(async () => {
-  const fridge = new FridgeStore(seedFridge);
-  const store = new MealPlanStore({
-    household: seedHousehold,
-    recipes: seedRecipes,
-    fridge,
-  });
+  // Każdy plik testów dostaje własną, świeżą bazę w pamięci RAM
+  // (te same tabele i dane startowe co plik hungrycator.db).
+  const db = openDatabase(":memory:");
+  const fridge = new FridgeStore(db, HOUSEHOLD_ID);
+  const store = new MealPlanStore({ db, householdId: HOUSEHOLD_ID, fridge });
   server = createApp(store, fridge).listen(0);
   await new Promise<void>((resolve) => server.once("listening", resolve));
   baseUrl = `http://127.0.0.1:${(server.address() as AddressInfo).port}`;

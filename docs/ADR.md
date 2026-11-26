@@ -129,12 +129,44 @@ W komunikacji wykorzystywane są metody HTTP:
 
 ---
 
+## ADR 5: Trwałe przechowywanie danych (baza danych SQLite)
+
+- **Status:** Accepted (Przyjęte)
+
+### Kontekst
+
+Pierwsza wersja prototypu przechowywała stan aplikacji w pamięci serwera, więc każdy restart backendu usuwał produkty z lodówki, propozycje posiłków i głosy. Wymaganie NFR-05 zakłada, że po awarii nie zostaną utracone żadne zapisane produkty. Strukturę danych opisuje diagram encji (`docs/EDR.png`). Rozwiązanie musi działać lokalnie u każdego członka zespołu bez zakładania kont i konfigurowania serwerów.
+
+### Decyzja
+
+Zdecydowano się na relacyjną bazę danych **SQLite**:
+
+- dane są zapisywane w pliku `backend/data/hungrycator.db`,
+- backend korzysta z modułu `node:sqlite` wbudowanego w Node.js 24, więc nie potrzebuje dodatkowych zależności npm,
+- tabele odpowiadają encjom z diagramu ERD, a klucze obce i ograniczenia `CHECK` pilnują spójności danych,
+- przy pierwszym uruchomieniu backend zakłada tabele i wypełnia je danymi startowymi, a testy korzystają z osobnej bazy w pamięci (`:memory:`).
+
+### Rozważane alternatywy
+
+- **PostgreSQL** (lokalnie lub w chmurze, np. Supabase) – pełny serwer bazy danych, lepszy przy wielu jednoczesnych użytkownikach, ale wymaga instalacji lub konta oraz konfiguracji połączenia na każdym komputerze.
+- **Usługi przechowywania plików w chmurze (Azure Blob Storage, AWS S3)** – dobre do plików, np. zdjęć potraw, ale nie do danych powiązanych relacjami, które trzeba filtrować i aktualizować; wymagają konta w chmurze.
+- **Plik JSON** – najprostszy, ale bez kluczy obcych, transakcji i zapytań; przy jednoczesnych zapisach łatwo o niespójne dane.
+
+### Konsekwencje
+
+- Dane nie znikają po restarcie serwera (NFR-05), a kopię zapasową tworzy się, kopiując jeden plik.
+- Baza działa od razu po uruchomieniu backendu, bez instalowania dodatkowych programów.
+- Schemat odpowiada diagramowi ERD, więc ewentualne przejście na PostgreSQL wymaga głównie zmiany zapytań w magazynach danych (`FridgeStore`, `MealPlanStore`).
+- SQLite obsługuje jeden proces serwera. Przy wdrożeniu z wieloma instancjami backendu należałoby przejść na serwer bazy danych, np. PostgreSQL.
+
+---
+
 ## Podsumowanie
 
 Podjęte decyzje architektoniczne pozwoliły na zaprojektowanie aplikacji Hungrycator w oparciu o architekturę Client-Server, która rozdziela frontend odpowiedzialny za interfejs użytkownika od backendu realizującego logikę biznesową.
 
 Wykorzystanie technologii React, TypeScript i Vite umożliwiło stworzenie interaktywnego interfejsu użytkownika, natomiast Node.js i Express zapewniają obsługę logiki serwerowej oraz żądań przesyłanych przez aplikację.
 
-Do komunikacji pomiędzy frontendem i backendem wykorzystano REST API oraz format JSON, co zapewnia prosty i uporządkowany sposób wymiany danych.
+Do komunikacji pomiędzy frontendem i backendem wykorzystano REST API oraz format JSON, co zapewnia prosty i uporządkowany sposób wymiany danych. Dane aplikacji są trwale zapisywane w relacyjnej bazie SQLite, której tabele odpowiadają diagramowi encji.
 
 Zastosowane rozwiązania tworzą spójną podstawę architektoniczną aplikacji Hungrycator oraz umożliwiają jej dalszy rozwój, rozbudowę funkcjonalności i łatwiejsze utrzymanie kodu.
