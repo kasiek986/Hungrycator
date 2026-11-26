@@ -138,16 +138,3 @@ Marek oczekuje, że aplikacja ułatwi mu kontrolowanie produktów spożywczych, 
 | Główna motywacja | Oszczędność pieniędzy | Wygoda i oszczędność czasu |
 | Najważniejsza potrzeba | Wspólne zarządzanie lodówką | Kontrola produktów i terminów ważności |
 
----
-
-# 5. Podsumowanie
-
-Przygotowane Persony przedstawiają dwie grupy potencjalnych użytkowników aplikacji Hungrycator.
-
-Anna reprezentuje młodych ludzi mieszkających wspólnie ze znajomymi, którzy potrzebują narzędzia do organizacji wspólnej lodówki, zakupów i posiłków.
-
-Marek reprezentuje osoby pracujące, które chcą zaoszczędzić czas, kontrolować domowe zapasy i ograniczyć marnowanie żywności.
-
-Obie Persony mają wspólny cel – lepsze zarządzanie produktami spożywczymi i codziennymi obowiązkami związanymi z przygotowywaniem jedzenia.
-
-Analiza ich potrzeb i motywacji stanowi podstawę do opracowania User Journey oraz dalszej analizy doświadczeń użytkowników aplikacji Hungrycator.
